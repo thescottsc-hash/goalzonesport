@@ -7,32 +7,32 @@
   <style>
 
     .hero-banner {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('IMG_0295.JPG');
-  background-size: cover;
-  background-position: center;
-  height: 320px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  border-bottom: 3px solid var(--primary);
-  margin-bottom: 24px;
-}
+      background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('IMG_0295.JPG');
+      background-size: cover;
+      background-position: center;
+      height: 320px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border-bottom: 3px solid var(--primary);
+      margin-bottom: 24px;
+    }
 
-.hero-content h1 {
-  color: #ffffff;
-  font-size: 2.5rem;
-  font-weight: 800;
-  margin-bottom: 8px;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-}
+    .hero-content h1 {
+      color: #ffffff;
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    }
 
-.hero-content p {
-  color: #a3e635;
-  font-size: 1.1rem;
-  font-weight: 600;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.5);
-}
+    .hero-content p {
+      color: #a3e635;
+      font-size: 1.1rem;
+      font-weight: 600;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    }
 
     :root {
       --bg-color: #f4f6f8;
@@ -45,24 +45,22 @@
       --tag-bg: #f7fee7;
       --tag-text: #3f6212;
     }
-      body {
-  background-image: linear-gradient(rgba(11, 15, 23, 0.85), rgba(11, 15, 23, 0.85)), url('IMG_0295.JPG');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  color: #f8fafc;
-}
+
+    body {
+      background-image: linear-gradient(rgba(11, 15, 23, 0.85), rgba(11, 15, 23, 0.85)), url('IMG_0295.JPG');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      color: #f8fafc;
+      background-color: var(--bg-color);
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    }
-
-    body {
-      background-color: var(--bg-color);
-      color: var(--text-main);
     }
 
     header {
@@ -274,6 +272,37 @@
       font-weight: 600;
     }
 
+    /* Estilos de Paginación */
+    .pagination-container {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 24px;
+    }
+
+    .pagination-btn {
+      background-color: #1e293b;
+      color: #f8fafc;
+      border: 1px solid #334155;
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.15s;
+    }
+
+    .pagination-btn:hover {
+      background-color: #334155;
+      border-color: var(--primary);
+    }
+
+    .pagination-btn.active {
+      background-color: var(--primary);
+      color: #0f172a;
+      border-color: var(--primary);
+    }
+
     /* Lightbox Modal */
     .lightbox {
       display: none;
@@ -379,12 +408,11 @@
   </header>
   
   <section class="hero-banner">
-  <div class="hero-content">
-    <h1>Bienvenido a Goal Zone Sport</h1>
-    <p>Las mejores equipaciones Fútbol, NBA, NFL, retro y training,  </p>
-  </div>
-</section>
-
+    <div class="hero-content">
+      <h1>Bienvenido a Goal Zone Sport</h1>
+      <p>Las mejores equipaciones Fútbol, NBA, NFL, retro y training,  </p>
+    </div>
+  </section>
 
   <div class="container">
     <!-- Menú Lateral -->
@@ -3767,6 +3795,13 @@
     </main>
   </div>
 
+      </div>
+
+      <!-- Contenedor para la Paginación -->
+      <div id="paginationContainer" class="pagination-container"></div>
+    </main>
+  </div>
+
   <!-- Lightbox Modal -->
   <div class="lightbox" id="imageModal">
     <span class="close-btn" id="closeBtn">&times;</span>
@@ -3787,9 +3822,15 @@
     const waOrderBtn = document.getElementById('waOrderBtn');
     const searchInput = document.getElementById('searchInput');
     const filterBtns = document.querySelectorAll('.filter-btn');
-    const cards = document.querySelectorAll('.product-card');
+    const allCards = Array.from(document.querySelectorAll('.product-card'));
+    const paginationContainer = document.getElementById('paginationContainer');
 
-    cards.forEach(card => {
+    let currentPage = 1;
+    const itemsPerPage = 15; // Muestra exactamente 15 equipaciones por página
+    let currentCategory = 'all';
+    let currentSearchTerm = '';
+
+    allCards.forEach(card => {
       card.addEventListener('click', () => {
         const img = card.querySelector('img');
         const title = card.querySelector('.card-title').innerText;
