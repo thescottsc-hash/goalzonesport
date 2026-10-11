@@ -24,23 +24,23 @@
       font-size: 2.5rem;
       font-weight: 800;
       margin-bottom: 8px;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+      text-shadow: 0 2px 4px rgba(253, 253, 253, 0.5);
     }
 
     .hero-content p {
       color: #a3e635;
       font-size: 1.1rem;
       font-weight: 600;
-      text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+      text-shadow: 0 1px 3px rgb(255, 253, 253);
     }
 
     :root {
       --bg-color: #f4f6f8;
-      --card-bg: #ffffff;
-      --text-main: #1f2937;
-      --text-muted: #6b7280;
+      --card-bg: #b3fd0569;
+      --text-main: #edf1f5;
+      --text-muted: #fefeff;
       --primary: #a3e635;
-      --primary-dark: #0f172a;
+      --primary-dark: #fbfcff;
       --border-color: #e5e7eb;
       --tag-bg: #f7fee7;
       --tag-text: #3f6212;
@@ -139,7 +139,7 @@
     }
 
     .category-box {
-      background: #1e293b00; 
+      background: #eaebec00; 
       border-radius: 10px;
       padding: 18px;
       border: 1px solid #a3e635;
@@ -178,15 +178,15 @@
 
     .category-box li a:hover,
     .category-box li a.active {
-      background-color: #f7fee7;
-      color: #3f6212;
+      background-color: #9cfc0291;
+      color: #ffffff;
       font-weight: 700;
     }
 
     .category-box li a span {
       font-size: 0.75rem;
       color: var(--text-muted);
-      background: #e5e7eb;
+      background: #67f8065d;
       padding: 2px 7px;
       border-radius: 10px;
     }
@@ -220,9 +220,9 @@
       position: absolute;
       top: 10px;
       left: 10px;
-      background: rgba(15, 23, 42, 0.85);
+      background: rgba(51, 51, 51, 0.664);
       color: #ffffff;
-      font-size: 0.7rem;
+      font-size: 0.6rem;
       font-weight: 600;
       padding: 3px 8px;
       border-radius: 4px;
@@ -247,7 +247,7 @@
       font-weight: 600;
       line-height: 1.35;
       margin-bottom: 6px;
-      color: #111827;
+      color: #f2f2f3;
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
@@ -282,7 +282,7 @@
 
     .pagination-btn {
       background-color: #1e293b;
-      color: #f8fafc;
+      color: #f9fcf8;
       border: 1px solid #334155;
       padding: 8px 16px;
       border-radius: 6px;
@@ -341,7 +341,7 @@
     }
 
     .lightbox-caption {
-      color: #ffffff;
+      color: #7dff04;
       margin-top: 14px;
       font-size: 1.1rem;
       font-weight: 600;
@@ -371,7 +371,7 @@
       position: absolute;
       top: 20px;
       right: 25px;
-      color: #ffffff;
+      color: #a0f70050;
       font-size: 2.5rem;
       cursor: pointer;
       line-height: 1;
@@ -4073,7 +4073,7 @@
     const paginationContainer = document.getElementById('paginationContainer');
 
     let currentPage = 1;
-    const itemsPerPage = 20; // Muestra exactamente 15 equipaciones por página
+    const itemsPerPage = 20; 
     let currentCategory = 'all';
     let currentSearchTerm = '';
 
