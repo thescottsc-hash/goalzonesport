@@ -5,35 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Goal Zone Sport - Catálogo de Equipaciones</title>
   <style>
-
-    .hero-banner {
-      background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('IMG_0295.JPG');
-      background-size: cover;
-      background-position: center;
-      height: 320px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      border-bottom: 3px solid var(--primary);
-      margin-bottom: 24px;
-    }
-
-    .hero-content h1 {
-      color: #ffffff;
-      font-size: 2.5rem;
-      font-weight: 800;
-      margin-bottom: 8px;
-      text-shadow: 0 2px 4px rgba(253, 253, 253, 0.5);
-    }
-
-    .hero-content p {
-      color: #a1ff0a;
-      font-size: 1.1rem;
-      font-weight: 600;
-      text-shadow: 0 1px 3px rgb(255, 253, 253);
-    }
-
     :root {
       --bg-color: #f4f6f8;
       --card-bg: #b3fd0569;
@@ -46,6 +17,13 @@
       --tag-text: #000000;
     }
 
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
     body {
       background-image: linear-gradient(rgba(11, 15, 23, 0.85), rgba(11, 15, 23, 0.85)), url('IMG_0295.JPG');
       background-size: cover;
@@ -56,34 +34,30 @@
       background-color: var(--bg-color);
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    }
-
     header {
       background-color: #0b0f17;
       border-bottom: 2px solid #1e293b;
-      padding: 10px 24px;
+      padding: 10px 16px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       position: sticky;
       top: 0;
       z-index: 100;
+      gap: 12px;
+      flex-wrap: wrap;
     }
 
     .brand-logo {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       text-decoration: none;
+      flex-shrink: 0;
     }
 
     .brand-logo img {
-      height: 48px;
+      height: 38px;
       width: auto;
       object-fit: contain;
       border-radius: 6px;
@@ -91,7 +65,7 @@
 
     .brand-logo span {
       color: #ffffff;
-      font-size: 1.15rem;
+      font-size: 1.05rem;
       font-weight: 800;
       letter-spacing: 0.5px;
     }
@@ -101,16 +75,16 @@
     }
 
     .search-box {
-      width: 45%;
-      max-width: 500px;
+      flex: 1;
+      max-width: 350px;
     }
 
     .search-box input {
       width: 100%;
-      padding: 10px 16px;
+      padding: 8px 12px;
       border: 1px solid #334155;
       border-radius: 8px;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       outline: none;
       background-color: #1e293b;
       color: #f8fafc;
@@ -122,26 +96,81 @@
 
     .search-box input:focus {
       border-color: var(--primary);
-      background-color: #f5f6f800;
+    }
+
+    /* --- ESTILOS PARA LOS BOTONES DE IDIOMA --- */
+    .lang-switcher {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .lang-btn {
+      background-color: #1e293b;
+      color: #f9fcf8;
+      border: 1px solid #334155;
+      padding: 6px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.75rem;
+      transition: all 0.15s;
+    }
+
+    .lang-btn:hover {
+      background-color: #334155;
+      border-color: var(--primary);
+    }
+
+    .lang-btn.active {
+      background-color: var(--primary);
+      color: #0f172a;
+      border-color: var(--primary);
+    }
+
+    .hero-banner {
+      background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('IMG_0295.JPG');
+      background-size: cover;
+      background-position: center;
+      padding: 30px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border-bottom: 2px solid var(--primary);
+      margin-bottom: 20px;
+    }
+
+    .hero-content h1 {
+      color: #ffffff;
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+
+    .hero-content p {
+      color: #a1ff0a;
+      font-size: 0.95rem;
+      font-weight: 600;
     }
 
     .container {
       display: flex;
       max-width: 1440px;
-      margin: 24px auto;
-      padding: 0 16px;
-      gap: 24px;
+      margin: 0 auto 24px auto;
+      padding: 0 12px;
+      gap: 20px;
+      flex-direction: column;
     }
 
     aside {
-      width: 260px;
-      flex-shrink: 0;
+      width: 100%;
     }
 
     .category-box {
-      background: #eaebec00; 
+      background: #0b0f17b8; 
       border-radius: 10px;
-      padding: 18px;
+      padding: 14px;
       border: 1px solid #9dff00;
     }
 
@@ -149,46 +178,48 @@
       font-size: 0.8rem;
       text-transform: uppercase;
       color: #7afc00;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       font-weight: 700;
       letter-spacing: 0.6px;
     }
 
     .category-box ul {
       list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
     }
 
     .category-box li {
-      margin-bottom: 4px;
+      margin-bottom: 0;
     }
 
     .category-box li a {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 9px 12px;
+      padding: 6px 10px;
       color: #fff;
       text-decoration: none;
-      font-size: 0.88rem;
-      border-radius: 6px;
+      font-size: 0.8rem;
+      border-radius: 20px;
       font-weight: 500;
+      background-color: #1e293b;
+      border: 1px solid #334155;
       transition: all 0.15s;
       cursor: pointer;
     }
 
     .category-box li a:hover,
     .category-box li a.active {
-      background-color: #9cfc0291;
-      color: #ffffff;
+      background-color: var(--primary);
+      color: #0f172a;
+      border-color: var(--primary);
       font-weight: 700;
     }
 
     .category-box li a span {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      background: #67f8065d;
-      padding: 2px 7px;
-      border-radius: 10px;
+      display: none;
     }
 
     main {
@@ -197,8 +228,8 @@
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 18px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
     }
 
     .product-card {
@@ -208,23 +239,25 @@
       overflow: hidden;
       cursor: pointer;
       position: relative;
+      display: flex;
+      flex-direction: column;
       transition: transform 0.15s, box-shadow 0.15s;
     }
 
     .product-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     }
 
     .badge {
       position: absolute;
-      top: 10px;
-      left: 10px;
-      background: rgba(51, 51, 51, 0.664);
+      top: 8px;
+      left: 8px;
+      background: rgba(0, 0, 0, 0.75);
       color: #ffffff;
-      font-size: 0.6rem;
+      font-size: 0.55rem;
       font-weight: 600;
-      padding: 3px 8px;
+      padding: 3px 6px;
       border-radius: 4px;
       text-transform: uppercase;
       z-index: 1;
@@ -232,20 +265,28 @@
 
     .product-card img {
       width: 100%;
-      height: 250px;
+      height: 160px;
       object-fit: cover;
       background-color: #f3f4f6;
       display: block;
     }
 
+    .product-card img + img {
+      display: none;
+    }
+
     .card-info {
-      padding: 12px 14px;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      justify-content: space-between;
     }
 
     .card-title {
-      font-size: 0.9rem;
+      font-size: 0.8rem;
       font-weight: 600;
-      line-height: 1.35;
+      line-height: 1.3;
       margin-bottom: 6px;
       color: #f2f2f3;
       display: -webkit-box;
@@ -258,41 +299,50 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-top: 8px;
-      font-size: 0.8rem;
+      font-size: 0.7rem;
       color: var(--text-muted);
+      gap: 4px;
     }
 
     .version-tag {
-      font-size: 0.72rem;
+      font-size: 0.65rem;
       background: var(--tag-bg);
       color: var(--tag-text);
-      padding: 2px 6px;
+      padding: 2px 5px;
       border-radius: 4px;
       font-weight: 600;
     }
 
-    /* Estilos de Paginación */
+    /* --- ESTILOS DE PAGINACIÓN INTELIGENTE Y AGRUPADA --- */
     .pagination-container {
       display: flex;
       justify-content: center;
-      gap: 8px;
-      margin-top: 24px;
+      align-items: center;
+      gap: 6px;
+      margin-top: 28px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      width: 100%;
     }
 
     .pagination-btn {
       background-color: #1e293b;
       color: #f9fcf8;
       border: 1px solid #334155;
-      padding: 8px 16px;
-      border-radius: 6px;
+      min-width: 38px;
+      height: 38px;
+      padding: 0 8px;
+      border-radius: 8px;
       cursor: pointer;
       font-weight: 600;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       transition: all 0.15s;
     }
 
-    .pagination-btn:hover {
+    .pagination-btn:hover:not(:disabled) {
       background-color: #334155;
       border-color: var(--primary);
     }
@@ -301,6 +351,19 @@
       background-color: var(--primary);
       color: #0f172a;
       border-color: var(--primary);
+    }
+
+    .pagination-btn:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+
+    .pagination-ellipsis {
+      color: #94a3b8;
+      font-weight: bold;
+      padding: 0 2px;
+      font-size: 0.9rem;
+      user-select: none;
     }
 
     /* Lightbox Modal */
@@ -316,7 +379,7 @@
       justify-content: center;
       align-items: center;
       flex-direction: column;
-      padding: 20px;
+      padding: 16px;
     }
 
     .lightbox.active {
@@ -328,13 +391,13 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      max-width: 90vw;
+      max-width: 95vw;
       max-height: 85vh;
     }
 
     .lightbox img {
       max-width: 100%;
-      max-height: 72vh;
+      max-height: 68vh;
       object-fit: contain;
       border-radius: 8px;
       background: #fff;
@@ -342,54 +405,83 @@
 
     .lightbox-caption {
       color: #7dff04;
-      margin-top: 14px;
-      font-size: 1.1rem;
+      margin-top: 12px;
+      font-size: 0.95rem;
       font-weight: 600;
       text-align: center;
     }
 
     .wa-btn {
-      margin-top: 12px;
+      margin-top: 10px;
       background-color: #22c55e;
       color: #ffffff;
       text-decoration: none;
-      padding: 10px 22px;
+      padding: 10px 18px;
       border-radius: 6px;
       font-weight: 600;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      transition: background 0.15s;
-    }
-
-    .wa-btn:hover {
-      background-color: #16a34a;
+      gap: 6px;
     }
 
     .close-btn {
       position: absolute;
-      top: 20px;
-      right: 25px;
+      top: 10px;
+      right: 15px;
       color: #a1f700f5;
-      font-size: 2.5rem;
+      font-size: 2.2rem;
       cursor: pointer;
       line-height: 1;
-      user-select: none;
     }
 
-    @media (max-width: 768px) {
+    @media (min-width: 768px) {
       .container {
-        flex-direction: column;
+        flex-direction: row;
+        padding: 0 16px;
       }
       aside {
-        width: 100%;
+        width: 260px;
+        flex-shrink: 0;
       }
-      .search-box {
-        width: 50%;
+      .category-box ul {
+        flex-direction: column;
+      }
+      .category-box li a {
+        border-radius: 6px;
+        padding: 9px 12px;
+        font-size: 0.88rem;
+        border: none;
+        background-color: transparent;
+      }
+      .category-box li a span {
+        display: inline-block;
+      }
+      .grid {
+        grid-template-columns: repeat(3, minmax(200px, 1fr));
+        gap: 18px;
+      }
+      .product-card img {
+        height: 220px;
+      }
+      .hero-content h1 {
+        font-size: 2.2rem;
+      }
+      .hero-content p {
+        font-size: 1.1rem;
+      }
+      .brand-logo img {
+        height: 44px;
       }
       .brand-logo span {
-        display: none;
+        display: inline;
+        font-size: 1.15rem;
+      }
+    }
+
+    @media (min-width: 1100px) {
+      .grid {
+        grid-template-columns: repeat(4, minmax(200px, 1fr));
       }
     }
   </style>
@@ -402,15 +494,22 @@
       <img src="logo goalzone.jpg" alt="Goal Zone Sport Logo">
       <span>GOAL ZONE <b>SPORT</b></span>
     </a>
+    
     <div class="search-box">
-      <input type="text" id="searchInput" placeholder="Buscar por equipo, jugador, dorsal o categoría...">
+      <input type="text" id="searchInput" data-en="Search team, player, number..." placeholder="Buscar equipo, jugador, dorsal...">
+    </div>
+
+    <!-- Botones de selección de idioma (Español / Inglés) -->
+    <div class="lang-switcher">
+      <button class="lang-btn active" onclick="setLanguage('es')">ES</button>
+      <button class="lang-btn" onclick="setLanguage('en')">EN</button>
     </div>
   </header>
   
   <section class="hero-banner">
     <div class="hero-content">
-      <h1>Bienvenido a Goal Zone Sport</h1>
-      <p>Las mejores equipaciones Fútbol, NBA, NFL, retro y training,  </p>
+      <h1 data-en="Welcome to Goal Zone Sport">Bienvenido a Goal Zone Sport</h1>
+      <p data-en="The best Football, NBA, NFL, retro and training kits">Las mejores equipaciones Fútbol, NBA, NFL, retro y training</p>
     </div>
   </section>
 
@@ -418,17 +517,17 @@
     <!-- Menú Lateral -->
     <aside>
       <div class="category-box">
-        <h3>Ligas & Deportes</h3>
+        <h3 data-en="Leagues & Sports">Ligas & Deportes</h3>
         <ul id="categoryList">
-          <li><a class="filter-btn active" data-category="all">Todos los productos <span></span></a></li>
-          <li><a class="filter-btn" data-category="premier">Premier League <span></span></a></li>
-          <li><a class="filter-btn" data-category="selecciones">Selecciones Nacionales <span></span></a></li>
-          <li><a class="filter-btn" data-category="laliga">LaLiga EA Sports <span></span></a></li>
-          <li><a class="filter-btn" data-category="nba">Baloncesto & NBA <span></span></a></li>
-          <li><a class="filter-btn" data-category="ligue1">Ligue 1 <span></span></a></li>
-          <li><a class="filter-btn" data-category="efl">Fútbol Inglés & EFL <span></span></a></li>
-          <li><a class="filter-btn" data-category="sudamerica">Sudamérica (River) <span></span></a></li>
-          <li><a class="filter-btn" data-category="mls">MLS (Inter Miami) <span></span></a></li>
+          <li><a class="filter-btn active" data-category="all" data-en="All products">Todos <span></span></a></li>
+          <li><a class="filter-btn" data-category="premier" data-en="Premier League">Premier League <span></span></a></li>
+          <li><a class="filter-btn" data-category="selecciones" data-en="National Teams">Selecciones <span></span></a></li>
+          <li><a class="filter-btn" data-category="laliga" data-en="LaLiga EA Sports">LaLiga EA Sports <span></span></a></li>
+          <li><a class="filter-btn" data-category="nba" data-en="Basketball & NBA">Baloncesto & NBA <span></span></a></li>
+          <li><a class="filter-btn" data-category="ligue1" data-en="Ligue 1">Ligue 1 <span></span></a></li>
+          <li><a class="filter-btn" data-category="efl" data-en="English Football & EFL">Fútbol Inglés & EFL <span></span></a></li>
+          <li><a class="filter-btn" data-category="sudamerica" data-en="South America">Sudamérica <span></span></a></li>
+          <li><a class="filter-btn" data-category="mls" data-en="MLS">MLS <span></span></a></li>
         </ul>
       </div>
     </aside>
@@ -436,7 +535,6 @@
     <!-- Galería de Artículos -->
     <main>
       <div class="grid" id="productGrid">
-
         <!-- Arsenal FC Granate y Blanco Mangas Blancas Originals (NUEVA) -->
         <div class="product-card" data-category="premier" data-title="Arsenal FC Granate Blanco Mangas Blancas Originals Trefoil Emirates Fly Better Premier League">
           <span class="badge">Edición Especial</span>
@@ -3894,6 +3992,280 @@
   </div>
 </div>
 
+<!-- Sevilla FC - Edición Especial / Entrenamiento -->
+<div class="product-card" data-category="laliga" data-title="Sevilla FC Edición Especial Granate y Rosa Adidas Laliga" data-en="Sevilla FC Special Edition Maroon & Pink Adidas Laliga">
+  <span class="badge" data-en="Special Edition">Edición Especial</span>
+  <img src="53c6a26644f6d2c01b41f50f.jpg" alt="Sevilla FC Granate y Rosa Adidas">
+  <div class="card-info">
+    <div class="card-title" data-en="Sevilla FC Special Edition - Maroon & Pink Abstract Patterns">Sevilla FC - Edición Especial Granate & Patrón Geométrico Rosa</div>
+    <div class="card-details">
+      <span class="version-tag">Player Issue</span>
+      <span>LaLiga EA Sports</span>
+    </div>
+  </div>
+</div>
+
+<!-- 1. Sevilla FC Roja con Cuello Negro y Trefoil Blanco -->
+<div class="product-card" data-category="laliga" data-title="Sevilla FC Primera Roja Cuello Negro Trefoil Adidas" data-en="Sevilla FC Home Red with Black Collar & White Trefoil">
+  <span class="badge" data-en="1st Kit">1ª Equipación</span>
+  <img src="5ef178e90ca89707da2f900f.jpg" alt="Sevilla FC Roja y Negra">
+  <div class="card-info">
+    <div class="card-title" data-en="Sevilla FC Home - Classic Red & Black Collar Edition">Sevilla FC - Clásica Roja con Cuello Negro & Trefoil</div>
+    <div class="card-details">
+      <span class="version-tag">Pro Match</span>
+      <span>LaLiga EA Sports</span>
+    </div>
+  </div>
+</div>
+
+<!-- 2. Sevilla FC Blanca con Detalles Rojos y Dorados -->
+<div class="product-card" data-category="laliga" data-title="Sevilla FC Away Blanca Roja Dorada Adidas" data-en="Sevilla FC Away White with Red & Gold Details">
+  <span class="badge" data-en="2nd Kit">2ª Equipación</span>
+  <img src="b05999803be1103d3d4ccaef.jpg" alt="Sevilla FC Blanca y Dorada">
+  <div class="card-info">
+    <div class="card-title" data-en="Sevilla FC Away - Elegant White with Red & Gold Trim">Sevilla FC Away - Blanca Elegante con Detalles Rojos & Dorados</div>
+    <div class="card-details">
+      <span class="version-tag">Player Issue</span>
+      <span>LaLiga EA Sports</span>
+    </div>
+  </div>
+</div>
+
+<!-- 3. Sevilla FC Negra con Detalles Degradados Morados y Rosas -->
+<div class="product-card" data-category="laliga" data-title="Sevilla FC Tercera Negra Degradé Morado Rosa Adidas" data-en="Sevilla FC Third Black with Purple & Pink Gradient">
+  <span class="badge" data-en="3rd Kit">3ª Equipación</span>
+  <img src="26503fefeb342164692fbc6d.jpg" alt="Sevilla FC Negra y Degradado">
+  <div class="card-info">
+    <div class="card-title" data-en="Sevilla FC Third - Modern Black with Purple/Pink Gradient">Sevilla FC Third - Negra Moderna con Degradado Morado & Rosa</div>
+    <div class="card-details">
+      <span class="version-tag">Pro Match</span>
+      <span>LaLiga EA Sports</span>
+    </div>
+  </div>
+</div>
+
+<!-- 4. Sevilla FC Granate / Vino con Cuello Polo y Cremallera -->
+<div class="product-card" data-category="laliga" data-title="Sevilla FC Polo Training Granate Cremallera Adidas" data-en="Sevilla FC Training Maroon Polo with Half Zip">
+  <span class="badge" data-en="Training Pro">Training Pro</span>
+  <img src="1a48782d56893702d9b0eb71.jpg" alt="Sevilla FC Polo Granate Training">
+  <div class="card-info">
+    <div class="card-title" data-en="Sevilla FC Training - Maroon Polo with Half Zip & White Details">Sevilla FC Training - Polo Granate con Media Cremallera & Detalles Blancos</div>
+    <div class="card-details">
+      <span class="version-tag">Training Issue</span>
+      <span>LaLiga EA Sports</span>
+    </div>
+  </div>
+</div>
+
+<!-- 5. Sevilla FC Polo Training Blanco con Mangas Grises -->
+<div class="product-card" data-category="laliga" data-title="Sevilla FC Polo Training Blanco Mangas Grises Adidas" data-en="Sevilla FC Training White Polo with Grey Sleeves">
+  <span class="badge" data-en="Training Pro">Training Pro</span>
+  <img src="a554f463d6440093df6458b2.jpg" alt="Sevilla FC Polo Blanco y Gris Training">
+  <div class="card-info">
+    <div class="card-title" data-en="Sevilla FC Training - White Polo with Grey Sleeves & Half Zip">Sevilla FC Training - Polo Blanco con Mangas Grises & Cremallera</div>
+    <div class="card-details">
+      <span class="version-tag">Training Issue</span>
+      <span>LaLiga EA Sports</span>
+    </div>
+  </div>
+</div>
+
+<!-- 6. Sevilla FC Edición Especial Terracota / Óxido con Paneles Blancos -->
+<div class="product-card" data-category="laliga" data-title="Sevilla FC Edición Especial Terracota Blanca Adidas" data-en="Sevilla FC Special Edition Terracotta & White">
+  <span class="badge" data-en="Special Edition">Edición Especial</span>
+  <img src="bdf7c04e5b8f10dc37707385.jpg" alt="Sevilla FC Terracota Especial">
+  <div class="card-info">
+    <div class="card-title" data-en="Sevilla FC Special Edition - Terracotta with White Side Panels">Sevilla FC Special - Terracota con Paneles Laterales Blancos</div>
+    <div class="card-details">
+      <span class="version-tag">Player Issue</span>
+      <span>LaLiga EA Sports</span>
+    </div>
+  </div>
+</div>
+
+<!-- 7. Sevilla FC Retro Blanca con Hombros Rojos y Trefoil Vintage -->
+<div class="product-card" data-category="laliga" data-title="Sevilla FC Retro Blanca Hombros Rojos Adidas Originals" data-en="Sevilla FC Retro White with Red Shoulders Originals">
+  <span class="badge" data-en="Retro Collector">Retro Collector</span>
+  <img src="934a5718f332c632335510e5.jpg" alt="Sevilla FC Retro Blanca y Roja">
+  <div class="card-info">
+    <div class="card-title" data-en="Sevilla FC Heritage - White with Bold Red Shoulders Originals">Sevilla FC Heritage - Blanca con Hombros Anchos Rojos Originals</div>
+    <div class="card-details">
+      <span class="version-tag">Retro Issue</span>
+      <span>LaLiga EA Sports</span>
+    </div>
+  </div>
+</div>
+
+<!-- 8. Sevilla FC Coleccionista / Edición Histórica "Sevilla Desde 1890" -->
+<div class="product-card" data-category="laliga" data-title="Sevilla FC Coleccionista Roja Sevilla Desde 1890 Adidas Originals" data-en="Sevilla FC Collector Red Sevilla Desde 1890 Originals">
+  <span class="badge" data-en="Collector Edition">Edición Coleccionista</span>
+  <img src="e1a6394399cad90c783eb1f4.jpg" alt="Sevilla FC Coleccionista Roja Damasco">
+  <div class="card-info">
+    <div class="card-title" data-en="Sevilla FC Collector - Red Damask Pattern 'Sevilla Desde 1890'">Sevilla FC Collector - Patrón Damasco Rojo 'Sevilla Desde 1890'</div>
+    <div class="card-details">
+      <span class="version-tag">Retro Collector</span>
+      <span>LaLiga EA Sports</span>
+    </div>
+  </div>
+</div>
+
+<!-- 1. Rayo Vallecano Gris y Negro con Rayos -->
+<div class="product-card" data-category="laliga" data-title="Rayo Vallecano Gris Negra Rayos Umbro Digi LaLiga" data-en="Rayo Vallecano Grey & Black Lightning Bolts Umbro Digi LaLiga">
+  <span class="badge" data-en="Special Edition">Edición Especial</span>
+  <img src="8994335d3334e60c77966cce.jpg" alt="Rayo Vallecano Gris y Negro">
+  <div class="card-info">
+    <div class="card-title" data-en="Rayo Vallecano Special - Grey with Black Lightning Bolts & Digi">Rayo Vallecano Special - Gris con Rayos Negros & Digi</div>
+    <div class="card-details">
+      <span class="version-tag">Player Issue</span>
+      <span>LaLiga EA Sports</span>
+    </div>
+  </div>
+</div>
+
+<!-- 2. Rayo Vallecano Blanca y Roja con Rayos -->
+<div class="product-card" data-category="laliga" data-title="Rayo Vallecano Blanca Roja Rayos Umbro Digi LaLiga" data-en="Rayo Vallecano White & Red Lightning Bolts Umbro Digi LaLiga">
+  <span class="badge" data-en="1st Kit">1ª Equipación</span>
+  <img src="44e644477d18a39462c1781f.jpg" alt="Rayo Vallecano Blanca y Roja">
+  <div class="card-info">
+    <div class="card-title" data-en="Rayo Vallecano Home - White with Bold Red Lightning Bolts">Rayo Vallecano Home - Blanca con Rayos Rojos Destacados</div>
+    <div class="card-details">
+      <span class="version-tag">Pro Match</span>
+      <span>LaLiga EA Sports</span>
+    </div>
+  </div>
+</div>
+
+<!-- 3. Rayo Vallecano Negra con Franja Roja Clásica -->
+<div class="product-card" data-category="laliga" data-title="Rayo Vallecano Negra Franja Roja Umbro Digi LaLiga" data-en="Rayo Vallecano Black with Classic Red Sash Umbro Digi LaLiga">
+  <span class="badge" data-en="2nd Kit">2ª Equipación</span>
+  <img src="31ffed3721dbe0ae74e5fb10.jpg" alt="Rayo Vallecano Negra y Roja">
+  <div class="card-info">
+    <div class="card-title" data-en="Rayo Vallecano Away - Black with Classic Red Diagonal Sash">Rayo Vallecano Away - Negra con Franja Diagonal Roja Clásica</div>
+    <div class="card-details">
+      <span class="version-tag">Player Issue</span>
+      <span>LaLiga EA Sports</span>
+    </div>
+  </div>
+</div>
+
+<!-- 4. Rayo Vallecano Amarilla y Granate con Franja de Rayo -->
+<div class="product-card" data-category="laliga" data-title="Rayo Vallecano Amarilla Granate Franja Rayo Umbro LaLiga" data-en="Rayo Vallecano Yellow & Maroon with Lightning Bolt Sash Umbro">
+  <span class="badge" data-en="3rd Kit">3ª Equipación</span>
+  <img src="9abc33d9ce458d29c5ff076c.jpg" alt="Rayo Vallecano Amarilla y Granate">
+  <div class="card-info">
+    <div class="card-title" data-en="Rayo Vallecano Third - Yellow & Maroon with Bolt Sash">Rayo Vallecano Third - Amarilla & Granate con Franja de Rayo</div>
+    <div class="card-details">
+      <span class="version-tag">Pro Match</span>
+      <span>LaLiga EA Sports</span>
+    </div>
+  </div>
+</div>
+
+<!-- 5. Rayo Vallecano Negra con Franja Diagonal Roja (Detalles Blancos) -->
+<div class="product-card" data-category="laliga" data-title="Rayo Vallecano Negra Franja Roja Blanca Umbro LaLiga" data-en="Rayo Vallecano Black & Red Sash with White Trim Umbro">
+  <span class="badge" data-en="Special Edition">Edición Especial</span>
+  <img src="2a12350e03e567d9d327385e.jpg" alt="Rayo Vallecano Negra Franja Roja">
+  <div class="card-info">
+    <div class="card-title" data-en="Rayo Vallecano Special - Black with Red Sash & White Collar">Rayo Vallecano Special - Negra con Franja Roja & Cuello Blanco</div>
+    <div class="card-details">
+      <span class="version-tag">Player Issue</span>
+      <span>LaLiga EA Sports</span>
+    </div>
+  </div>
+</div>
+
+<!-- 6. Rayo Vallecano Azul con Franja Diagonal Roja -->
+<div class="product-card" data-category="laliga" data-title="Rayo Vallecano Azul Franja Roja Umbro Digi LaLiga" data-en="Rayo Vallecano Blue with Red Sash Umbro Digi LaLiga">
+  <span class="badge" data-en="Special Edition">Edición Especial</span>
+  <img src="5391ab451dd035855a68c78b.jpg" alt="Rayo Vallecano Azul y Roja">
+  <div class="card-info">
+    <div class="card-title" data-en="Rayo Vallecano Special - Royal Blue with Red Diagonal Sash">Rayo Vallecano Special - Azul Rey con Franja Roja Diagonal</div>
+    <div class="card-details">
+      <span class="version-tag">Pro Match</span>
+      <span>LaLiga EA Sports</span>
+    </div>
+  </div>
+</div>
+
+<!-- 1. Rayo Vallecano Retro Blanca con Franja Roja y Escudo Abeja / Joma -->
+<div class="product-card" data-category="laliga" data-title="Rayo Vallecano Retro Blanca Franja Roja Abeja Joma LaLiga" data-en="Rayo Vallecano Retro White with Red Sash & Bee Sponsor Joma LaLiga">
+  <span class="badge" data-en="Retro Edition">Edición Retro</span>
+  <img src="569111ec9fad4f8470d927c2.jpg" alt="Rayo Vallecano Retro Abeja Joma">
+  <div class="card-info">
+    <div class="card-title" data-en="Rayo Vallecano Retro - White with Red Sash & Bee Sponsor Joma">Rayo Vallecano Retro - Blanca con Franja Roja & Patrocinador de la Abeja Joma</div>
+    <div class="card-details">
+      <span class="version-tag">Retro Issue</span>
+      <span>LaLiga EA Sports</span>
+    </div>
+  </div>
+</div>
+
+<!-- 2. Rayo Vallecano Roja con Rayos Blancos y Patrocinador Digi / Umbro -->
+<div class="product-card" data-category="laliga" data-title="Rayo Vallecano Roja Rayos Blancos Digi Umbro LaLiga" data-en="Rayo Vallecano Red with White Lightning Bolts Digi Umbro LaLiga">
+  <span class="badge" data-en="Special Edition">Edición Especial</span>
+  <img src="ae740c052b80b0b6a7598444.jpg" alt="Rayo Vallecano Roja y Blanca Rayos">
+  <div class="card-info">
+    <div class="card-title" data-en="Rayo Vallecano Special - Red with White Lightning Bolts & Digi">Rayo Vallecano Special - Roja con Rayos Blancos & Digi Umbro</div>
+    <div class="card-details">
+      <span class="version-tag">Player Issue</span>
+      <span>LaLiga EA Sports</span>
+    </div>
+  </div>
+</div>
+
+<!-- 7. Valencia C.F. Senyera (Rayas Amarillas y Rojas con Mangas Azules) -->
+<div class="product-card" data-category="laliga" data-title="Valencia CF Senyera Rayas Amarillas Rojas Puma LaLiga" data-en="Valencia CF Senyera Yellow & Red Stripes Puma LaLiga">
+  <span class="badge" data-en="Special Edition">Edición Especial</span>
+  <img src="a14f3459c504ccd59403c4ab.jpg" alt="Valencia CF Senyera">
+  <div class="card-info">
+    <div class="card-title" data-en="Valencia CF Senyera - Traditional Yellow & Red Stripes with Blue Sleeves">Valencia CF Senyera - Tradicional con Barras Amarillas & Rojas</div>
+    <div class="card-details">
+      <span class="version-tag">Retro Collector</span>
+      <span>LaLiga EA Sports</span>
+    </div>
+  </div>
+</div>
+
+<!-- 8. Valencia C.F. Azul Petróleo y Naranja -->
+<div class="product-card" data-category="laliga" data-title="Valencia CF Azul Petroleo Naranja Puma LaLiga" data-en="Valencia CF Dark Teal & Orange Puma LaLiga">
+  <span class="badge" data-en="2nd Kit">2ª Equipación</span>
+  <img src="9bc770b8e51d980f9e71bfe6.jpg" alt="Valencia CF Azul y Naranja">
+  <div class="card-info">
+    <div class="card-title" data-en="Valencia CF Away - Dark Teal with Vibrant Orange Details">Valencia CF Away - Azul Petróleo con Detalles Naranja Vivos</div>
+    <div class="card-details">
+      <span class="version-tag">Player Issue</span>
+      <span>LaLiga EA Sports</span>
+    </div>
+  </div>
+</div>
+
+<!-- 9. Valencia C.F. Rosa con Patrón Degradado -->
+<div class="product-card" data-category="laliga" data-title="Valencia CF Rosa TM Real Estate Group Puma LaLiga" data-en="Valencia CF Pink with Gradient Pattern Puma LaLiga">
+  <span class="badge" data-en="Special Edition">Edición Especial</span>
+  <img src="8396858903d14ea3f99d2234.jpg" alt="Valencia CF Rosa">
+  <div class="card-info">
+    <div class="card-title" data-en="Valencia CF Special - Pink with Vertical Gradient & TM Sponsor">Valencia CF Special - Rosa con Degradado Vertical & TM</div>
+    <div class="card-details">
+      <span class="version-tag">Pro Match</span>
+      <span>LaLiga EA Sports</span>
+    </div>
+  </div>
+</div>
+
+<!-- 10. Valencia C.F. Blanca con Detalles Granates (Sobre Maniquí) -->
+<div class="product-card" data-category="laliga" data-title="Valencia CF Blanca Detalles Granates Maniqui Puma LaLiga" data-en="Valencia CF White with Maroon Trim Mannequin Puma LaLiga">
+  <span class="badge" data-en="1st Kit">1ª Equipación</span>
+  <img src="3a19277c072e0e044cdf864a.jpg" alt="Valencia CF Blanca Maniquí">
+  <div class="card-info">
+    <div class="card-title" data-en="Valencia CF Home - Clean White with Maroon V-Neck & Trim">Valencia CF Home - Blanca Limpia con Cuello en V & Ribetes Granates</div>
+    <div class="card-details">
+      <span class="version-tag">Pro Match</span>
+      <span>LaLiga EA Sports</span>
+    </div>
+  </div>
+</div>
+
+
 
         <!-- Argentina Messi -->
         <div class="product-card" data-category="selecciones" data-title="Argentina Messi 10 Primera Equipación Celeste y Blanca">
@@ -4037,14 +4409,9 @@
             </div>
           </div>
         </div>
-
-      </div>
-    </main>
-  </div>
-
       </div>
 
-      <!-- Contenedor para la Paginación -->
+      <!-- Contenedor para la Paginación Inteligente -->
       <div id="paginationContainer" class="pagination-container"></div>
     </main>
   </div>
@@ -4055,7 +4422,7 @@
     <div class="lightbox-content">
       <img id="modalImg" src="" alt="Vista previa">
       <div class="lightbox-caption" id="modalCaption"></div>
-      <a href="#" target="_blank" class="wa-btn" id="waOrderBtn">
+      <a href="#" target="_blank" class="wa-btn" id="waOrderBtn" data-en="Ask for info via WhatsApp">
         Pedir información por WhatsApp
       </a>
     </div>
@@ -4076,6 +4443,58 @@
     const itemsPerPage = 20; 
     let currentCategory = 'all';
     let currentSearchTerm = '';
+    let currentLang = 'es';
+
+    // --- FUNCIÓN DE CAMBIO DE IDIOMA MANUAL (ES / EN) ---
+    function setLanguage(lang) {
+      currentLang = lang;
+      
+      // Actualizar botones activos
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.innerText.toLowerCase() === lang);
+      });
+
+      // Traducir elementos estáticos que tengan el atributo data-en
+      document.querySelectorAll('[data-en]').forEach(el => {
+        if (lang === 'en') {
+          if (!el.hasAttribute('data-es')) {
+            el.setAttribute('data-es', el.innerText || el.placeholder);
+          }
+          const textEn = el.getAttribute('data-en');
+          if (el.tagName === 'INPUT') {
+            el.placeholder = textEn;
+          } else {
+            el.innerText = textEn;
+          }
+        } else {
+          const textEs = el.getAttribute('data-es');
+          if (textEs) {
+            if (el.tagName === 'INPUT') {
+              el.placeholder = textEs;
+            } else {
+              el.innerText = textEs;
+            }
+          }
+        }
+      });
+
+      // Traducir dinámicamente los títulos de las tarjetas si tienen su versión en inglés
+      allCards.forEach(card => {
+        const titleEl = card.querySelector('.card-title');
+        const badgeEl = card.querySelector('.badge');
+        
+        if (lang === 'en') {
+          if (card.dataset.titleEn && !titleEl.hasAttribute('data-es')) {
+            titleEl.setAttribute('data-es', titleEl.innerText);
+            titleEl.innerText = card.dataset.titleEn;
+          }
+        } else {
+          if (titleEl.hasAttribute('data-es')) {
+            titleEl.innerText = titleEl.getAttribute('data-es');
+          }
+        }
+      });
+    }
 
     allCards.forEach(card => {
       card.addEventListener('click', () => {
@@ -4086,7 +4505,11 @@
         modalCaption.innerText = title;
 
         const phone = "34610377085";
-        const message = encodeURIComponent(`Hola Goal Zone Sport, me interesa pedir o consultar información sobre: ${title}`);
+        const textMsg = currentLang === 'en' 
+          ? `Hello Goal Zone Sport, I am interested in ordering or getting info about: ${title}`
+          : `Hola Goal Zone Sport, me interesa pedir o consultar información sobre: ${title}`;
+        
+        const message = encodeURIComponent(textMsg);
         waOrderBtn.href = `https://wa.me/${phone}?text=${message}`;
 
         modal.classList.add('active');
@@ -4121,27 +4544,68 @@
       const endIndex = startIndex + itemsPerPage;
       const cardsToShow = filteredCards.slice(startIndex, endIndex);
 
-      cardsToShow.forEach(card => card.style.display = 'block');
+      cardsToShow.forEach(card => card.style.display = 'flex');
 
-      renderPagination(totalPages);
+      renderSmartPagination(totalPages);
     }
 
-    function renderPagination(totalPages) {
+    // --- FUNCIÓN DE PAGINACIÓN INTELIGENTE Y AGRUPADA ---
+    function renderSmartPagination(totalPages) {
       paginationContainer.innerHTML = '';
 
       if (totalPages <= 1) return;
 
-      for (let i = 1; i <= totalPages; i++) {
-        const btn = document.createElement('button');
-        btn.innerText = i;
-        btn.className = `pagination-btn ${i === currentPage ? 'active' : ''}`;
-        btn.addEventListener('click', () => {
-          currentPage = i;
+      const prevBtn = document.createElement('button');
+      prevBtn.className = 'pagination-btn';
+      prevBtn.innerHTML = '‹';
+      prevBtn.disabled = currentPage === 1;
+      prevBtn.addEventListener('click', () => {
+        if (currentPage > 1) {
+          currentPage--;
           updateDisplay();
-          window.scrollTo({ top: 400, behavior: 'smooth' });
-        });
-        paginationContainer.appendChild(btn);
+          window.scrollTo({ top: 180, behavior: 'smooth' });
+        }
+      });
+      paginationContainer.appendChild(prevBtn);
+
+      for (let i = 1; i <= totalPages; i++) {
+        if (
+          i === 1 || 
+          i === totalPages || 
+          (i >= currentPage - 1 && i <= currentPage + 1)
+        ) {
+          const btn = document.createElement('button');
+          btn.innerText = i;
+          btn.className = `pagination-btn ${i === currentPage ? 'active' : ''}`;
+          btn.addEventListener('click', () => {
+            currentPage = i;
+            updateDisplay();
+            window.scrollTo({ top: 180, behavior: 'smooth' });
+          });
+          paginationContainer.appendChild(btn);
+        } else if (
+          i === currentPage - 2 || 
+          i === currentPage + 2
+        ) {
+          const ellipsis = document.createElement('span');
+          ellipsis.innerText = '...';
+          ellipsis.className = 'pagination-ellipsis';
+          paginationContainer.appendChild(ellipsis);
+        }
       }
+
+      const nextBtn = document.createElement('button');
+      nextBtn.className = 'pagination-btn';
+      nextBtn.innerHTML = '›';
+      nextBtn.disabled = currentPage === totalPages;
+      nextBtn.addEventListener('click', () => {
+        if (currentPage < totalPages) {
+          currentPage++;
+          updateDisplay();
+          window.scrollTo({ top: 180, behavior: 'smooth' });
+        }
+      });
+      paginationContainer.appendChild(nextBtn);
     }
 
     filterBtns.forEach(btn => {
@@ -4162,7 +4626,6 @@
       updateDisplay();
     });
 
-    // Inicializar la vista al cargar
     updateDisplay();
   </script>
 
