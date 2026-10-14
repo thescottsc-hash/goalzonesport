@@ -192,13 +192,19 @@
 
     .category-box li {
       margin-bottom: 0;
+      width: 100%;
     }
 
-    .category-box li a {
+    /* --- ESTILOS DE MENÚ DESPLEGABLE CON ANIMACIÓN FLUIDA --- */
+    .dropdown-container {
+      width: 100%;
+    }
+
+    .dropdown-btn {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 6px 10px;
+      padding: 7px 12px;
       color: #fff;
       text-decoration: none;
       font-size: 0.8rem;
@@ -206,20 +212,69 @@
       font-weight: 500;
       background-color: #1e293b;
       border: 1px solid #334155;
-      transition: all 0.15s;
+      transition: all 0.2s ease;
       cursor: pointer;
+      width: 100%;
+      text-align: left;
     }
 
-    .category-box li a:hover,
-    .category-box li a.active {
+    .dropdown-btn:hover,
+    .dropdown-btn.active {
       background-color: var(--primary);
       color: #0f172a;
       border-color: var(--primary);
       font-weight: 700;
     }
 
-    .category-box li a span {
-      display: none;
+    .arrow {
+      font-size: 0.7rem;
+      transition: transform 0.3s ease;
+    }
+
+    .dropdown-container.open .arrow {
+      transform: rotate(180deg);
+    }
+
+    /* Animación de apertura y cierre fluida */
+    .sub-menu {
+      list-style: none;
+      padding-left: 12px;
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.35s ease, opacity 0.3s ease, margin-top 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-top: 0;
+    }
+
+    .dropdown-container.open .sub-menu {
+      max-height: 400px; /* Altura suficiente para albergar los equipos */
+      opacity: 1;
+      margin-top: 6px;
+      margin-bottom: 6px;
+    }
+
+    .sub-item {
+      display: block;
+      padding: 6px 10px;
+      color: #cbd5e1;
+      text-decoration: none;
+      font-size: 0.75rem;
+      border-radius: 6px;
+      background-color: #151b28;
+      border: 1px solid #283548;
+      transition: all 0.15s;
+      cursor: pointer;
+    }
+
+    .sub-item:hover,
+    .sub-item.active {
+      background-color: #7afc00;
+      color: #0b0f17;
+      font-weight: 700;
+      border-color: #7afc00;
     }
 
     main {
@@ -441,21 +496,22 @@
         padding: 0 16px;
       }
       aside {
-        width: 260px;
+        width: 280px;
         flex-shrink: 0;
       }
       .category-box ul {
         flex-direction: column;
       }
-      .category-box li a {
+      .dropdown-btn {
         border-radius: 6px;
         padding: 9px 12px;
         font-size: 0.88rem;
         border: none;
         background-color: transparent;
       }
-      .category-box li a span {
-        display: inline-block;
+      .dropdown-btn:hover {
+        background-color: var(--primary);
+        color: #0f172a;
       }
       .grid {
         grid-template-columns: repeat(3, minmax(200px, 1fr));
@@ -514,27 +570,145 @@
   </section>
 
   <div class="container">
-    <!-- Menú Lateral -->
+    <!-- Menú Lateral con Subcategorías Desplegables de Equipos en cada Liga -->
     <aside>
       <div class="category-box">
-        <h3 data-en="Leagues & Sports">Ligas & Deportes</h3>
+        <h3 data-en="Leagues & Teams">Ligas & Equipos</h3>
         <ul id="categoryList">
-          <li><a class="filter-btn active" data-category="all" data-en="All products">Todos <span></span></a></li>
-          <li><a class="filter-btn" data-category="premier" data-en="Premier League">Premier League <span></span></a></li>
-          <li><a class="filter-btn" data-category="selecciones" data-en="National Teams">Selecciones <span></span></a></li>
-          <li><a class="filter-btn" data-category="laliga" data-en="LaLiga EA Sports">LaLiga EA Sports <span></span></a></li>
-          <li><a class="filter-btn" data-category="Bundesliga" data-en="Bundesliga">Bundesliga <span></span></a></li>
-          <li><a class="filter-btn" data-category="seriea" data-en="Serie A">Serie A <span></span></a></li>
-          <li><a class="filter-btn" data-category="ligue1" data-en="Ligue 1">Ligue 1 <span></span></a></li>
-          <li><a class="filter-btn" data-category="efl" data-en="English Football & EFL">Fútbol Inglés & EFL <span></span></a></li>
-          <li><a class="filter-btn" data-category="sudamerica" data-en="South America">Sudamérica <span></span></a></li>
-          <li><a class="filter-btn" data-category="MLS" data-en="MLS">MLS <span></span></a></li>
-          <li><a class="filter-btn" data-category="nba" data-en="Basketball & NBA">Baloncesto & NBA <span></span></a></li>
-          <li><a class="filter-btn" data-category="nfl" data-en="NFL American Football">NFL Fútbol Americano <span></span></a></li>
-          <li><a class="filter-btn" data-category="chandal" data-en="Tracksuits & Hoodies">Chándal/Sudaderas <span></span></a></li>
-          <li><a class="filter-btn" data-category="chaqueta" data-en="Jacket">Chaqueta <span></span></a></li>
-          <li><a class="filter-btn" data-category="otros" data-en="Other">Otros <span></span></a></li>
-          
+          <li><button class="dropdown-btn active filter-btn" data-category="all" data-en="All products">Todos los productos</button></li>
+
+          <!-- PREMIER LEAGUE -->
+          <li>
+            <div class="dropdown-container">
+              <button class="dropdown-btn filter-btn" data-category="premier">
+                <span data-en="Premier League">Premier League</span>
+                <span class="arrow">▼</span>
+              </button>
+              <ul class="sub-menu">
+                <li><a class="sub-item filter-sub" data-team="arsenal">Arsenal</a></li>
+                <li><a class="sub-item filter-sub" data-team="chelsea">Chelsea</a></li>
+                <li><a class="sub-item filter-sub" data-team="everton">Everton</a></li>
+                <li><a class="sub-item filter-sub" data-team="liverpool">Liverpool</a></li>
+                <li><a class="sub-item filter-sub" data-team="manchester city">Manchester City</a></li>
+                <li><a class="sub-item filter-sub" data-team="manchester united">Manchester United</a></li>
+                <li><a class="sub-item filter-sub" data-team="newcastle">Newcastle United</a></li>
+                <li><a class="sub-item filter-sub" data-team="nottingham">Nottingham Forest</a></li>
+                <li><a class="sub-item filter-sub" data-team="tottenham">Tottenham Hotspur</a></li>
+                <li><a class="sub-item filter-sub" data-team="west ham">West Ham United</a></li>
+                <li><a class="sub-item filter-sub" data-team="wolves">Wolverhampton</a></li>
+              </ul>
+            </div>
+          </li>
+
+          <!-- LALIGA EA SPORTS -->
+          <li>
+            <div class="dropdown-container">
+              <button class="dropdown-btn filter-btn" data-category="laliga">
+                <span data-en="LaLiga EA Sports">LaLiga EA Sports</span>
+                <span class="arrow">▼</span>
+              </button>
+              <ul class="sub-menu">
+                <li><a class="sub-item filter-sub" data-team="athletic">Athletic Club</a></li>
+                <li><a class="sub-item filter-sub" data-team="atletico">Atlético de Madrid</a></li>
+                <li><a class="sub-item filter-sub" data-team="barcelona">FC Barcelona</a></li>
+                <li><a class="sub-item filter-sub" data-team="cadiz">Cádiz CF</a></li>
+                <li><a class="sub-item filter-sub" data-team="malaga">Málaga CF</a></li>
+                <li><a class="sub-item filter-sub" data-team="rayo">Rayo Vallecano</a></li>
+                <li><a class="sub-item filter-sub" data-team="real madrid">Real Madrid</a></li>
+                <li><a class="sub-item filter-sub" data-team="sevilla">Sevilla FC</a></li>
+                <li><a class="sub-item filter-sub" data-team="valencia">Valencia CF</a></li>
+              </ul>
+            </div>
+          </li>
+         
+          <!-- BUNDESLIGA -->
+          <li>
+            <div class="dropdown-container">
+              <button class="dropdown-btn filter-btn" data-category="Bundesliga">
+                <span data-en="Bundesliga">Bundesliga</span>
+                <span class="arrow">▼</span>
+              </button>
+              <ul class="sub-menu">
+                <li><a class="sub-item filter-sub" data-team="bayern">FC Bayern Munich</a></li>
+                <li><a class="sub-item filter-sub" data-team="dortmund">Borussia Dortmund</a></li>
+              </ul>
+            </div>
+          </li>
+
+          <!-- LIGUE 1 -->
+          <li>
+            <div class="dropdown-container">
+              <button class="dropdown-btn filter-btn" data-category="ligue1">
+                <span data-en="Ligue 1">Ligue 1</span>
+                <span class="arrow">▼</span>
+              </button>
+              <ul class="sub-menu">
+                <li><a class="sub-item filter-sub" data-team="psg">Paris Saint-Germain</a></li>
+              </ul>
+            </div>
+          </li>
+
+          <!-- EFL CHAMPIONSHIP / INGLÉS -->
+          <li>
+            <div class="dropdown-container">
+              <button class="dropdown-btn filter-btn" data-category="efl">
+                <span data-en="English Football & EFL">Fútbol Inglés & EFL</span>
+                <span class="arrow">▼</span>
+              </button>
+              <ul class="sub-menu">
+                <li><a class="sub-item filter-sub" data-team="middlesbrough">Middlesbrough</a></li>
+                <li><a class="sub-item filter-sub" data-team="sheffield">Sheffield United</a></li>
+                <li><a class="sub-item filter-sub" data-team="southampton">Southampton</a></li>
+                <li><a class="sub-item filter-sub" data-team="stoke">Stoke City</a></li>
+                <li><a class="sub-item filter-sub" data-team="watford">Watford</a></li>
+                <li><a class="sub-item filter-sub" data-team="west bromwich">West Bromwich Albion</a></li>
+              </ul>
+            </div>
+          </li>
+
+          <!-- Primera División de Argentina -->     
+           <li>
+            <div class="dropdown-container">
+              <button class="dropdown-btn filter-btn" data-category="lpf">
+                <span data-en="Argentine Professional Football League">Primera División Argentina</span>
+                <span class="arrow">▼</span>
+              </button>
+                <ul class="sub-menu">
+                  <li><a class="sub-item filter-sub" data-team="river">River Plate</a></li>
+                  <li><a class="sub-item filter-sub" data-team="boca">Boca Juniors</a></li>
+                  <li><a class="sub-item filter-sub" data-team="estudiantes">Estudiantes</a></li>
+                  <li><a class="sub-item filter-sub" data-team="velez">Vélez</a></li>
+                  <li><a class="sub-item filter-sub" data-team="talleres">Talleres</a></li>
+                  <li><a class="sub-item filter-sub" data-team="instituto">Instituto</a></li>
+                  <li><a class="sub-item filter-sub" data-team="defensa">Defensa y Justicia</a></li>
+                  <li><a class="sub-item filter-sub" data-team="lanus">Lanús</a></li>
+                  <li><a class="sub-item filter-sub" data-team="inde">Independiente</a></li>
+              </ul>          
+            </div>
+          </li>   
+
+           <!-- SELECCIONES -->
+          <li>
+            <div class="dropdown-container">
+              <button class="dropdown-btn filter-btn" data-category="selecciones">
+                <span data-en="National Teams">Selecciones</span>
+                <span class="arrow">▼</span>
+              </button>
+              <ul class="sub-menu">
+                <li><a class="sub-item filter-sub" data-team="argentina">Argentina</a></li>
+                <li><a class="sub-item filter-sub" data-team="brasil">Brasil</a></li>
+                <li><a class="sub-item filter-sub" data-team="espana">España</a></li>
+              </ul>
+            </div>
+          </li>
+
+          <!-- CATEGORÍAS ADICIONALES -->
+          <li><button class="dropdown-btn filter-btn" data-category="MLS" data-en="MLS">MLS / Inter Miami</button></li>
+          <li><button class="dropdown-btn filter-btn" data-category="nba" data-en="Basketball & NBA">Baloncesto & NBA</button></li>
+          <li><button class="dropdown-btn filter-btn" data-category="nfl" data-en="NFL American Football">NFL Fútbol Americano</button></li>
+          <li><button class="dropdown-btn filter-btn" data-category="chandal" data-en="Tracksuits & Hoodies">Chándal / Sudaderas</button></li>
+          <li><button class="dropdown-btn filter-btn" data-category="chaqueta" data-en="Jackets">Chaquetas</button></li>
+          <li><button class="dropdown-btn filter-btn" data-category="otros" data-en="Other">Otros</button></li>
         </ul>
       </div>
     </aside>
@@ -4703,7 +4877,7 @@
 </div>
 
         <!-- River Plate -->
-        <div class="product-card" data-category="sudamerica" data-title="River Plate Argentina Alternativa Rayada Blanca Roja Negra Betano">
+        <div class="product-card" data-category="lpf" data-team="river" data-title="River Plate Argentina Alternativa Rayada Blanca Roja Negra Betano">
           <span class="badge">2ª Equipación</span>
           <img src="river.jpeg" alt="River Plate Tricolor">
           <div class="card-info">
@@ -6432,7 +6606,7 @@
 </div>
 
 <!-- 7. Camiseta de Lujo Paris Saint-Germain x Louis Vuitton (Azul y Oro) -->
-<div class="product-card" data-category="ligue1" data-title="PSG Louis Vuitton Edicion Lujo Azul Roja Oro">
+<div class="product-card" data-category="ligue1" data-team="psg" data-title="PSG Louis Vuitton Edicion Lujo Azul Roja Oro">
   <span class="badge" data-en="Luxury Collab">Colaboración de Lujo</span>
   <img src="PHOTO-2026-10-13-12-33-31.jpg" alt="PSG Louis Vuitton Lujo">
   <div class="card-info">
@@ -6445,7 +6619,7 @@
 </div>
 
 <!-- 8. FC Bayern de Múnich - Dorsal #9 Kane con Diseño Fénix (Espalda) -->
-<div class="product-card" data-category="Bundesliga" data-title="FC Bayern Munich Kane 9 Edicion Especial Fenix Dorada Espalda">
+<div class="product-card" data-category="Bundesliga" data-team="bayern" data-title="FC Bayern Munich Kane 9 Edicion Especial Fenix Dorada Espalda">
   <span class="badge" data-en="Special Edition">Edición Especial</span>
   <img src="PHOTO-2026-10-13-12-33-50 2.jpg" alt="FC Bayern Kane Fénix Espalda">
   <div class="card-info">
@@ -6458,7 +6632,7 @@
 </div>
 
 <!-- 9. FC Bayern de Múnich - Equipación Completa Edición Fénix (Frontal sobre Maniquí) -->
-<div class="product-card" data-category="Bundesliga" data-title="FC Bayern Munich Edicion Especial Fenix Roja Dorada Maniqui">
+<div class="product-card" data-category="Bundesliga" data-team="bayern" data-title="FC Bayern Munich Edicion Especial Fenix Roja Dorada Maniqui">
   <span class="badge" data-en="Special Edition">Edición Especial</span>
   <img src="PHOTO-2026-10-13-12-33-50.jpg" alt="FC Bayern Fénix Maniquí">
   <div class="card-info">
@@ -6679,7 +6853,7 @@
 </div>
 
 <!-- 1. Pantalón Corto Selección Española Granate con Detalles Dorados Originals -->
-<div class="product-card" data-category="selecciones" data-title="Pantalon Corto Seleccion Espanola Granate Dorado Originals">
+<div class="product-card" data-category="selecciones" data-team="espana" data-title="Pantalon Corto Seleccion Espanola Granate Dorado Originals">
   <span class="badge" data-en="Retro Originals">Retro Originals</span>
   <img src="b3400c8775bcc4980bdbe6f1.jpg" alt="Pantalón Corto España Granate y Dorado">
   <div class="card-info">
@@ -6692,7 +6866,7 @@
 </div>
 
 <!-- 2. Camiseta Selección Española Azul Oscuro con Patrón Texturizado Adidas Originals -->
-<div class="product-card" data-category="selecciones" data-title="Camiseta Seleccion Espanola Azul Oscuro Texturizada Originals">
+<div class="product-card" data-category="selecciones" data-team="espana" data-title="Camiseta Seleccion Espanola Azul Oscuro Texturizada Originals">
   <span class="badge" data-en="Retro Originals">Retro Originals</span>
   <img src="6d477d1b41f49d4a8db67537.jpg" alt="Camiseta España Azul Oscuro Texturizada">
   <div class="card-info">
@@ -6705,7 +6879,7 @@
 </div>
 
 <!-- 3. Camiseta Selección Española Azul Celeste con Patrón Texturizado Adidas Originals -->
-<div class="product-card" data-category="selecciones" data-title="Camiseta Seleccion Espanola Azul Celeste Texturizada Originals">
+<div class="product-card" data-category="selecciones" data-team="espana" data-title="Camiseta Seleccion Espanola Azul Celeste Texturizada Originals">
   <span class="badge" data-en="Retro Originals">Retro Originals</span>
   <img src="52d17edfaba30dc3aadaf54b.jpg" alt="Camiseta España Azul Celeste Texturizada">
   <div class="card-info">
@@ -6718,7 +6892,7 @@
 </div>
 
 <!-- 4. Camiseta Selección Española Azul Añil con Patrón Geométrico y Escudo Dorado (Doble Vista) -->
-<div class="product-card" data-category="selecciones" data-title="Camiseta Seleccion Espanola Azul Escudo Dorado Maniqui">
+<div class="product-card" data-category="selecciones" data-team="espana" data-title="Camiseta Seleccion Espanola Azul Escudo Dorado Maniqui">
   <span class="badge" data-en="Special Edition">Edición Especial</span>
   <img src="Gemini_Generated_Image_ihd25sihd25sihd2.jpg" alt="Camiseta España Azul Geométrica Frontal y Espalda">
   <div class="card-info">
@@ -6731,7 +6905,7 @@
 </div>
 
 <!-- 5. Camiseta Selección Española Azul Celeste y Marina con Paneles Aeroready -->
-<div class="product-card" data-category="selecciones" data-title="Camiseta Seleccion Espanola Azul Celeste Marina Aeroready">
+<div class="product-card" data-category="selecciones" data-team="espana" data-title="Camiseta Seleccion Espanola Azul Celeste Marina Aeroready">
   <span class="badge" data-en="Pro Match">Pro Match</span>
   <img src="f9a2b95c6728793f7b48d352.jpg" alt="Camiseta España Azul Celeste y Marina">
   <div class="card-info">
@@ -6744,7 +6918,7 @@
 </div>
 
 <!-- 6. Camiseta Selección Española Azul Oscuro con Inserciones Celestes y Detalles Rojos -->
-<div class="product-card" data-category="selecciones" data-title="Camiseta Seleccion Espanola Azul Oscuro Celeste Roja Climacool">
+<div class="product-card" data-category="selecciones" data-team="espana" data-title="Camiseta Seleccion Espanola Azul Oscuro Celeste Roja Climacool">
   <span class="badge" data-en="Pro Match">Pro Match</span>
   <img src="31022aa38ca0633ebb481fe1.jpg" alt="Camiseta España Azul Oscuro y Celeste">
   <div class="card-info">
@@ -6757,7 +6931,7 @@
 </div>
 
 <!-- 7. Pantalón Corto Selección Española Azul Marino con Rayas Tricolor y Celeste -->
-<div class="product-card" data-category="selecciones" data-title="Pantalon Corto Seleccion Espanola Azul Marino Tricolor Celeste">
+<div class="product-card" data-category="selecciones" data-team="espana" data-title="Pantalon Corto Seleccion Espanola Azul Marino Tricolor Celeste">
   <span class="badge" data-en="Pro Match">Pro Match</span>
   <img src="75ffcf979a6cf4dc510e3db4.jpg" alt="Pantalón Corto España Azul Marino y Celeste">
   <div class="card-info">
@@ -6770,7 +6944,7 @@
 </div>
 
 <!-- 8. Camiseta Conmemorativa Selección Española "Somos Campeones 2026" Negra (Doble Vista) -->
-<div class="product-card" data-category="selecciones" data-title="Camiseta Conmemorativa Seleccion Espanola Somos Campeones 2026 Negra">
+<div class="product-card" data-category="selecciones" data-team="espana" data-title="Camiseta Conmemorativa Seleccion Espanola Somos Campeones 2026 Negra">
   <span class="badge" data-en="Collector Edition">Edición Coleccionista</span>
   <img src="Gemini_Generated_Image_yheqmpyheqmpyheq.jpg" alt="Camiseta España Conmemorativa Campeones 2026 Frontal y Espalda">
   <div class="card-info">
@@ -6783,7 +6957,7 @@
 </div>
 
 <!-- 9. Camiseta Especial Selección Española x Spider-Man (Diseño Telaraña Dorada) -->
-<div class="product-card" data-category="selecciones" data-title="Camiseta Seleccion Espanola Spider Man Telarana Dorada Especial">
+<div class="product-card" data-category="selecciones" data-team="espana" data-title="Camiseta Seleccion Espanola Spider Man Telarana Dorada Especial">
   <span class="badge" data-en="Special Collab">Colaboración Especial</span>
   <img src="Gemini_Generated_Image_8inmda8inmda8inm.jpg" alt="Camiseta España Spider-Man Dorada Frontal y Espalda">
   <div class="card-info">
@@ -6796,7 +6970,7 @@
 </div>
 
 <!-- 10. Camiseta Selección Española Amarilla / Oro de Lujo con Parche FIFA y Detalles Granates -->
-<div class="product-card" data-category="selecciones" data-title="Camiseta Seleccion Espanola Amarilla Oro Lujo Parche FIFA Originals">
+<div class="product-card" data-category="selecciones" data-team="espana" data-title="Camiseta Seleccion Espanola Amarilla Oro Lujo Parche FIFA Originals">
   <span class="badge" data-en="Luxury Edition">Edición de Lujo</span>
   <img src="fe3c7c7113e6e6ab3070a0f8.jpg" alt="Camiseta España Amarilla de Lujo y FIFA">
   <div class="card-info">
@@ -6809,7 +6983,7 @@
 </div>
 
 <!-- 1. Camiseta Selección Española Negra con Patrón Ornamental y Detalles Dorados -->
-<div class="product-card" data-category="selecciones" data-title="Camiseta Seleccion Espanola Negra Patron Ornamental Dorado Originals">
+<div class="product-card" data-category="selecciones" data-team="espana" data-title="Camiseta Seleccion Espanola Negra Patron Ornamental Dorado Originals">
   <span class="badge" data-en="Retro Originals">Retro Originals</span>
   <img src="0a4e487b2e32edaf7edae53f.jpg" alt="Camiseta España Negra Ornamentada">
   <div class="card-info">
@@ -6822,7 +6996,7 @@
 </div>
 
 <!-- 2. Camiseta Selección Española Azul Oscuro con Patrón Ornamental y Detalles Dorados -->
-<div class="product-card" data-category="selecciones" data-title="Camiseta Seleccion Espanola Azul Oscuro Patron Ornamental Dorado Originals">
+<div class="product-card" data-category="selecciones" data-team="espana" data-title="Camiseta Seleccion Espanola Azul Oscuro Patron Ornamental Dorado Originals">
   <span class="badge" data-en="Retro Originals">Retro Originals</span>
   <img src="a00065955c67f3b7e9e766d2.jpg" alt="Camiseta España Azul Oscuro Ornamentada">
   <div class="card-info">
@@ -6835,7 +7009,7 @@
 </div>
 
 <!-- 3. Camiseta Selección Española Granate con Parche FIFA World Champions -->
-<div class="product-card" data-category="selecciones" data-title="Camiseta Seleccion Espanola Granate Parche FIFA World Champions">
+<div class="product-card" data-category="selecciones" data-team="espana" data-title="Camiseta Seleccion Espanola Granate Parche FIFA World Champions">
   <span class="badge" data-en="World Champions">World Champions</span>
   <img src="dcc9ead7e865e5d7099370ea.jpg" alt="Camiseta España Granate Parche FIFA">
   <div class="card-info">
@@ -6848,7 +7022,7 @@
 </div>
 
 <!-- 4. Camiseta Selección Española Blanca Estilo Arquitectónico / Gaudí -->
-<div class="product-card" data-category="selecciones" data-title="Camiseta Seleccion Espanola Blanca Estilo Arquitectonico Gaudi">
+<div class="product-card" data-category="selecciones" data-team="espana" data-title="Camiseta Seleccion Espanola Blanca Estilo Arquitectonico Gaudi">
   <span class="badge" data-en="Collector Edition">Edición Coleccionista</span>
   <img src="3181d948a951f93c7db396fb.jpg" alt="Camiseta España Blanca Estilo Arquitectónico">
   <div class="card-info">
@@ -6861,7 +7035,7 @@
 </div>
 
 <!-- 5. Camiseta Selección Española Granate con Patrón Histórico y Parche FIFA -->
-<div class="product-card" data-category="selecciones" data-title="Camiseta Seleccion Espanola Granate Patron Historico FIFA">
+<div class="product-card" data-category="selecciones" data-team="espana" data-title="Camiseta Seleccion Espanola Granate Patron Historico FIFA">
   <span class="badge" data-en="World Champions">World Champions</span>
   <img src="5beb678ff9d7149c25aaecd2.jpg" alt="Camiseta España Granate Histórica">
   <div class="card-info">
@@ -6874,7 +7048,7 @@
 </div>
 
 <!-- 6. Camiseta Estilo Chaqueta de Béisbol Selección Española Blanca con Botones Originals -->
-<div class="product-card" data-category="selecciones" data-title="Camiseta Estilo Beisbol Seleccion Espanola Blanca Botones Originals">
+<div class="product-card" data-category="selecciones" data-team="espana" data-title="Camiseta Estilo Beisbol Seleccion Espanola Blanca Botones Originals">
   <span class="badge" data-en="Special Edition">Edición Especial</span>
   <img src="82b7ea4b2aaba1d31de726b8.jpg" alt="Camiseta España Estilo Béisbol Blanca">
   <div class="card-info">
@@ -6887,7 +7061,7 @@
 </div>
 
 <!-- 7. Camiseta Selección Española Roja con Rayas Verticales Sutiles Climacool -->
-<div class="product-card" data-category="selecciones" data-title="Camiseta Seleccion Espanola Roja Rayas Verticales Climacool">
+<div class="product-card" data-category="selecciones" data-team="espana" data-title="Camiseta Seleccion Espanola Roja Rayas Verticales Climacool">
   <span class="badge" data-en="1st Kit">1ª Equipación</span>
   <img src="8f07fe325a192c7c54ba57ec.jpg" alt="Camiseta España Roja Rayas Sutiles">
   <div class="card-info">
@@ -6900,7 +7074,7 @@
 </div>
 
 <!-- 8. Camiseta Selección Española Roja con Panel Central Texturizado (Maniquí) -->
-<div class="product-card" data-category="selecciones" data-title="Camiseta Seleccion Espanola Roja Panel Central Texturizado Maniqui">
+<div class="product-card" data-category="selecciones" data-team="espana" data-title="Camiseta Seleccion Espanola Roja Panel Central Texturizado Maniqui">
   <span class="badge" data-en="Pro Match">Pro Match</span>
   <img src="12b600b3247572959715e855.jpg" alt="Camiseta España Roja Panel Central Maniquí">
   <div class="card-info">
@@ -6913,7 +7087,7 @@
 </div>
 
 <!-- 9. Camiseta Selección Española Negra con Mangas Negras y Patrón Ornamental (Doble Vista) -->
-<div class="product-card" data-category="selecciones" data-title="Camiseta Seleccion Espanola Negra Patron Ornamental Maniqui">
+<div class="product-card" data-category="selecciones" data-team="espana" data-title="Camiseta Seleccion Espanola Negra Patron Ornamental Maniqui">
   <span class="badge" data-en="Special Edition">Edición Especial</span>
   <img src="Gemini_Generated_Image_zfu4xfzfu4xfzfu4.jpg" alt="Camiseta España Negra Ornamental Frontal y Espalda">
   <div class="card-info">
@@ -6926,7 +7100,7 @@
 </div>
 
 <!-- 10. Camiseta Selección Española Granate con Patrón Ornamental en Pecho y Mangas Raglán (Maniquí) -->
-<div class="product-card" data-category="selecciones" data-title="Camiseta Seleccion Espanola Granate Patron Ornamental Maniqui">
+<div class="product-card" data-category="selecciones" data-team="espana" data-title="Camiseta Seleccion Espanola Granate Patron Ornamental Maniqui">
   <span class="badge" data-en="Pro Match">Pro Match</span>
   <img src="Gemini_Generated_Image_mvy9pymvy9pymvy9.jpg" alt="Camiseta España Granate Ornamental Maniquí">
   <div class="card-info">
@@ -6939,7 +7113,7 @@
 </div>
 
 <!-- 1. Camiseta Selección Española Retro Granate con Mangas Blancas y "España" en la Espalda -->
-<div class="product-card" data-category="selecciones" data-title="Camiseta Seleccion Espanola Retro Granate Mangas Blancas Espana Originals">
+<div class="product-card" data-category="selecciones" data-team="espana" data-title="Camiseta Seleccion Espanola Retro Granate Mangas Blancas Espana Originals">
   <span class="badge" data-en="Retro Originals">Retro Originals</span>
   <img src="Gemini_Generated_Image_22al4g22al4g22al.jpg" alt="Camiseta España Retro Granate y Blanca">
   <div class="card-info">
@@ -6952,7 +7126,7 @@
 </div>
 
 <!-- 2. Camiseta Selección Española Blanca de Lujo con Patrón Ornamental y Parche FIFA -->
-<div class="product-card" data-category="selecciones" data-title="Camiseta Seleccion Espanola Blanca Lujo Patron Ornamental Parche FIFA">
+<div class="product-card" data-category="selecciones" data-team="espana" data-title="Camiseta Seleccion Espanola Blanca Lujo Patron Ornamental Parche FIFA">
   <span class="badge" data-en="Luxury Edition">Edición de Lujo</span>
   <img src="dadad7457f2c8591c92cbeb0.jpg" alt="Camiseta España Blanca de Lujo y FIFA">
   <div class="card-info">
@@ -6965,7 +7139,7 @@
 </div>
 
 <!-- 3. Camiseta Selección Española Roja con Rayas Verticales Sutiles y Parche FIFA -->
-<div class="product-card" data-category="selecciones" data-title="Camiseta Seleccion Espanola Roja Rayas Verticales Parche FIFA">
+<div class="product-card" data-category="selecciones" data-team="espana" data-title="Camiseta Seleccion Espanola Roja Rayas Verticales Parche FIFA">
   <span class="badge" data-en="Pro Match">Pro Match</span>
   <img src="64d555e2b20ac76a58efd1a9.jpg" alt="Camiseta España Roja Rayas Verticales y FIFA">
   <div class="card-info">
@@ -6978,7 +7152,7 @@
 </div>
 
 <!-- 4. Camiseta Selección Española Roja de Manga Larga con Rayas Verticales y Parche FIFA -->
-<div class="product-card" data-category="selecciones" data-title="Camiseta Manga Larga Seleccion Espanola Roja Rayas FIFA">
+<div class="product-card" data-category="selecciones" data-team="espana" data-title="Camiseta Manga Larga Seleccion Espanola Roja Rayas FIFA">
   <span class="badge" data-en="Manga Larga">Manga Larga</span>
   <img src="e613f9ed315e6547cafff576.jpg" alt="Camiseta España Manga Larga Roja y FIFA">
   <div class="card-info">
@@ -6991,7 +7165,7 @@
 </div>
 
 <!-- 5. Camiseta Selección Española Blanca de Manga Larga Estilo Arquitectónico / Gaudí -->
-<div class="product-card" data-category="selecciones" data-title="Camiseta Manga Larga Seleccion Espanola Blanca Gaudi FIFA">
+<div class="product-card" data-category="selecciones" data-team="espana" data-title="Camiseta Manga Larga Seleccion Espanola Blanca Gaudi FIFA">
   <span class="badge" data-en="Manga Larga">Manga Larga</span>
   <img src="9e33baf91ee05c3a26f1f7d6.jpg" alt="Camiseta España Manga Larga Blanca Gaudí">
   <div class="card-info">
@@ -7004,7 +7178,7 @@
 </div>
 
 <!-- 6. Camiseta Selección Española Blanca con Patrón Ornamental y Detalles Granates Originals -->
-<div class="product-card" data-category="selecciones" data-title="Camiseta Seleccion Espanola Blanca Patron Ornamental Granate Originals">
+<div class="product-card" data-category="selecciones" data-team="espana" data-title="Camiseta Seleccion Espanola Blanca Patron Ornamental Granate Originals">
   <span class="badge" data-en="Retro Originals">Retro Originals</span>
   <img src="578cbcd68dae5b9a476f796c.jpg" alt="Camiseta España Blanca Ornamental Granate">
   <div class="card-info">
@@ -7017,7 +7191,7 @@
 </div>
 
 <!-- 7. Camiseta Selección Española Roja de Manga Larga con Rayas Verticales y Mangas Azules -->
-<div class="product-card" data-category="selecciones" data-title="Camiseta Manga Larga Seleccion Espanola Roja Rayas Azules Climacool">
+<div class="product-card" data-category="selecciones" data-team="espana" data-title="Camiseta Manga Larga Seleccion Espanola Roja Rayas Azules Climacool">
   <span class="badge" data-en="Manga Larga">Manga Larga</span>
   <img src="61850df0385ab4f551bc1e7f.jpg" alt="Camiseta España Manga Larga Roja y Azul">
   <div class="card-info">
@@ -7043,7 +7217,7 @@
 </div>
 
 <!-- 2. Pantalón Corto Selección Argentina Azul Marino y Celeste con Bandas Adidas -->
-<div class="product-card" data-category="selecciones" data-title="Pantalon Corto Seleccion Argentina Azul Marino Celeste Adidas">
+<div class="product-card" data-category="selecciones" data-team="argentina" data-title="Pantalon Corto Seleccion Argentina Azul Marino Celeste Adidas">
   <span class="badge" data-en="Pro Match">Pro Match</span>
   <img src="28df9f6f0d8847a1b14800f1.jpg" alt="Pantalón Corto Argentina Azul Marino y Celeste">
   <div class="card-info">
@@ -7056,7 +7230,7 @@
 </div>
 
 <!-- 3. Camiseta Selección Argentina Verde Petróleo / Turquesa Oscuro con Detalles Dorados (Colección Messi) -->
-<div class="product-card" data-category="selecciones" data-title="Camiseta Seleccion Espanola / Argentina Verde Petroleo Dorada Messi">
+<div class="product-card" data-category="selecciones" data-team="argentina" data-title="Camiseta Seleccion Espanola / Argentina Verde Petroleo Dorada Messi">
   <span class="badge" data-en="Messi Collection">Colección Messi</span>
   <img src="c17b53ae01a4e5df1cb44a34.jpg" alt="Camiseta Argentina Verde Petróleo y Dorada">
   <div class="card-info">
@@ -7069,7 +7243,7 @@
 </div>
 
 <!-- 4. Camiseta Selección Argentina Rosa con Rayas Radiantes Blancas (Colección Messi) -->
-<div class="product-card" data-category="selecciones" data-title="Camiseta Seleccion Argentina Rosa Rayas Radiantes Blancas Messi">
+<div class="product-card" data-category="selecciones" data-team="argentina" data-title="Camiseta Seleccion Argentina Rosa Rayas Radiantes Blancas Messi">
   <span class="badge" data-en="Messi Collection">Colección Messi</span>
   <img src="35302fdd2118b64bb9c410fc.jpg" alt="Camiseta Argentina Rosa y Blanca Radiante">
   <div class="card-info">
@@ -7082,7 +7256,7 @@
 </div>
 
 <!-- 5. Camiseta Selección Argentina Azul Cielo con Patrón Difuminado de Sol (Colección Messi) -->
-<div class="product-card" data-category="selecciones" data-title="Camiseta Seleccion Argentina Azul Cielo Difuminado Sol Messi">
+<div class="product-card" data-category="selecciones" data-team="argentina" data-title="Camiseta Seleccion Argentina Azul Cielo Difuminado Sol Messi">
   <span class="badge" data-en="Messi Collection">Colección Messi</span>
   <img src="c3ae26a47f49fae48d4568b3.jpg" alt="Camiseta Argentina Azul Cielo Difuminado">
   <div class="card-info">
@@ -7095,7 +7269,7 @@
 </div>
 
 <!-- 6. Pantalón Corto Selección Argentina Negro con Franjas Blancas y Celestes Adidas -->
-<div class="product-card" data-category="selecciones" data-title="Pantalon Corto Seleccion Argentina Negro Franjas Blancas Celestes Adidas">
+<div class="product-card" data-category="selecciones" data-team="argentina" data-title="Pantalon Corto Seleccion Argentina Negro Franjas Blancas Celestes Adidas">
   <span class="badge" data-en="Pro Match">Pro Match</span>
   <img src="7caf0762a0b4500006169b63.jpg" alt="Pantalón Corto Argentina Negro y Celeste">
   <div class="card-info">
@@ -7108,7 +7282,7 @@
 </div>
 
 <!-- 7. Camiseta Estilo Chaqueta de Béisbol Selección Argentina Celeste y Blanca con Botones (Colección Messi) -->
-<div class="product-card" data-category="selecciones" data-title="Camiseta Estilo Beisbol Argentina Celeste Blanca Botones Messi">
+<div class="product-card" data-category="selecciones" data-team="argentina" data-title="Camiseta Estilo Beisbol Argentina Celeste Blanca Botones Messi">
   <span class="badge" data-en="Messi Collection">Colección Messi</span>
   <img src="72f727ce7cee3d534ba269a8.jpg" alt="Camiseta Argentina Estilo Béisbol Celeste y Blanca">
   <div class="card-info">
@@ -7121,7 +7295,7 @@
 </div>
 
 <!-- 8. Camiseta Selección Argentina Negra y Blanca con Franja Central y Detalles Dorados (Doble Vista) -->
-<div class="product-card" data-category="selecciones" data-title="Camiseta Seleccion Argentina Negra Blanca Franja Dorada Maniqui">
+<div class="product-card" data-category="selecciones" data-team="argentina" data-title="Camiseta Seleccion Argentina Negra Blanca Franja Dorada Maniqui">
   <span class="badge" data-en="Special Edition">Edición Especial</span>
   <img src="Gemini_Generated_Image_9ubenx9ubenx9ube.jpg" alt="Camiseta Argentina Negra y Blanca Central Frontal y Espalda">
   <div class="card-info">
@@ -7134,7 +7308,7 @@
 </div>
 
 <!-- 9. Camiseta Selección Argentina de Manga Larga Celeste y Blanca con Franja Central (Colección Messi) -->
-<div class="product-card" data-category="selecciones" data-title="Camiseta Manga Larga Seleccion Argentina Celeste Blanca Messi">
+<div class="product-card" data-category="selecciones" data-team="argentina" data-title="Camiseta Manga Larga Seleccion Argentina Celeste Blanca Messi">
   <span class="badge" data-en="Manga Larga">Manga Larga</span>
   <img src="1cd8c1366a464c505f57632f.jpg" alt="Camiseta Argentina Manga Larga Celeste y Blanca">
   <div class="card-info">
@@ -7147,7 +7321,7 @@
 </div>
 
 <!-- 1. Camiseta Selección Argentina Blanca con Líneas Verticales Celestes y Doradas (Doble Vista) -->
-<div class="product-card" data-category="selecciones" data-title="Camiseta Seleccion Argentina Blanca Lineas Celestes Doradas Maniqui">
+<div class="product-card" data-category="selecciones" data-team="argentina" data-title="Camiseta Seleccion Argentina Blanca Lineas Celestes Doradas Maniqui">
   <span class="badge" data-en="Special Edition">Edición Especial</span>
   <img src="Gemini_Generated_Image_6wya7p6wya7p6wya.jpg" alt="Camiseta Argentina Blanca Líneas Celestes Frontal y Espalda">
   <div class="card-info">
@@ -7160,7 +7334,7 @@
 </div>
 
 <!-- 2. Pantalón Corto Selección Argentina Azul Marino y Celeste con Bandas Adidas -->
-<div class="product-card" data-category="selecciones" data-title="Pantalon Corto Seleccion Argentina Azul Marino Celeste Adidas">
+<div class="product-card" data-category="selecciones" data-team="argentina" data-title="Pantalon Corto Seleccion Argentina Azul Marino Celeste Adidas">
   <span class="badge" data-en="Pro Match">Pro Match</span>
   <img src="0e7eac0f4528ead9ae68ee5d.jpg" alt="Pantalón Corto Argentina Azul Marino y Celeste">
   <div class="card-info">
@@ -7199,7 +7373,7 @@
 </div>
 
 <!-- Camiseta Selección Argentina Amarilla / Dorada Edición Especial Sol de Mayo -->
-<div class="product-card" data-category="selecciones" data-title="Camiseta Seleccion Argentina Amarilla Dorada Sol de Mayo Edicion Especial">
+<div class="product-card" data-category="selecciones" data-team="argentina" data-title="Camiseta Seleccion Argentina Amarilla Dorada Sol de Mayo Edicion Especial">
   <span class="badge" data-en="Special Edition">Edición Especial</span>
   <img src="5bc51eb17afd6ef4c38729f8.jpg" alt="Camiseta Argentina Sol de Mayo Amarilla">
   <div class="card-info">
@@ -7212,7 +7386,7 @@
 </div>
 
 <!-- 1. Pantalón Corto FC Bayern de Múnich Blanco y Azul Marino con Franjas Rojas Adidas -->
-<div class="product-card" data-category="Bundesliga" data-title="Pantalon Corto FC Bayern Munich Blanco Azul Marino Adidas">
+<div class="product-card" data-category="Bundesliga" data-team="bayern" data-title="Pantalon Corto FC Bayern Munich Blanco Azul Marino Adidas">
   <span class="badge" data-en="Training Pro">Training Pro</span>
   <img src="8dc0bbed74cbf9c2e3021ebd.jpg" alt="Pantalón Corto Bayern Blanco y Marino">
   <div class="card-info">
@@ -7225,7 +7399,7 @@
 </div>
 
 <!-- 2. Pantalón Corto FC Bayern de Múnich Azul Grisáceo y Marino con Franjas Rojas Adidas -->
-<div class="product-card" data-category="Bundesliga" data-title="Pantalon Corto FC Bayern Munich Azul Grisaceo Marino Adidas">
+<div class="product-card" data-category="Bundesliga" data-team="bayern" data-title="Pantalon Corto FC Bayern Munich Azul Grisaceo Marino Adidas">
   <span class="badge" data-en="Training Pro">Training Pro</span>
   <img src="f0d4825392112efdecb36d31.jpg" alt="Pantalón Corto Bayern Azul Grisáceo">
   <div class="card-info">
@@ -7238,7 +7412,7 @@
 </div>
 
 <!-- 3. Pantalón Corto FC Bayern de Múnich Violeta con Patrón Estampado y Franjas Rojas -->
-<div class="product-card" data-category="Bundesliga" data-title="Pantalon Corto FC Bayern Munich Violeta Estampado Rojo Adidas">
+<div class="product-card" data-category="Bundesliga" data-team="bayern" data-title="Pantalon Corto FC Bayern Munich Violeta Estampado Rojo Adidas">
   <span class="badge" data-en="Special Edition">Edición Especial</span>
   <img src="d93ce755035e986627554103.jpg" alt="Pantalón Corto Bayern Violeta Estampado">
   <div class="card-info">
@@ -7251,7 +7425,7 @@
 </div>
 
 <!-- 4. Pantalón Corto FC Bayern de Múnich Azul Marino con Franjas Blancas y Rojas Adidas -->
-<div class="product-card" data-category="Bundesliga" data-title="Pantalon Corto FC Bayern Munich Azul Marino Franjas Blancas Adidas">
+<div class="product-card" data-category="Bundesliga" data-team="bayern" data-title="Pantalon Corto FC Bayern Munich Azul Marino Franjas Blancas Adidas">
   <span class="badge" data-en="Pro Match">Pro Match</span>
   <img src="b7aefcff357aabb598abf354.jpg" alt="Pantalón Corto Bayern Azul Marino y Blanco">
   <div class="card-info">
@@ -7264,7 +7438,7 @@
 </div>
 
 <!-- 5. Pantalón Corto FC Bayern de Múnich Rojo con Franjas Blancas y Detalles Dorados Adidas -->
-<div class="product-card" data-category="Bundesliga" data-title="Pantalon Corto FC Bayern Munich Rojo Franjas Blancas Doradas Adidas">
+<div class="product-card" data-category="Bundesliga" data-team="bayern" data-title="Pantalon Corto FC Bayern Munich Rojo Franjas Blancas Doradas Adidas">
   <span class="badge" data-en="Pro Match">Pro Match</span>
   <img src="5ca4e8c5e5554c74ee56184c.jpg" alt="Pantalón Corto Bayern Rojo y Blanco">
   <div class="card-info">
@@ -7303,7 +7477,7 @@
 </div>
 
 <!-- 8. Camiseta FC Bayern de Múnich Estilo Retro Crema con Detalles Naranjas Originals -->
-<div class="product-card" data-category="Bundesliga" data-title="Camiseta FC Bayern Munich Retro Crema Naranja Originals">
+<div class="product-card" data-category="Bundesliga" data-team="bayern" data-title="Camiseta FC Bayern Munich Retro Crema Naranja Originals">
   <span class="badge" data-en="Retro Originals">Retro Originals</span>
   <img src="3dd492d8b8cec8b4bc679bdc.jpg" alt="Camiseta Bayern Retro Crema y Naranja">
   <div class="card-info">
@@ -7316,7 +7490,7 @@
 </div>
 
 <!-- 9. Camiseta FC Bayern de Múnich Edición Especial Artística / Floral Multicolor con Logo Dorado (Doble Vista) -->
-<div class="product-card" data-category="Bundesliga" data-title="Camiseta FC Bayern Munich Edicion Especial Artistica Floral Dorada Maniqui">
+<div class="product-card" data-category="Bundesliga" data-team="bayern" data-title="Camiseta FC Bayern Munich Edicion Especial Artistica Floral Dorada Maniqui">
   <span class="badge" data-en="Special Edition">Edición Especial</span>
   <img src="Gemini_Generated_Image_ouc2ofouc2ofouc2.jpg" alt="Camiseta Bayern Artística Multicolor Frontal y Espalda">
   <div class="card-info">
@@ -7342,7 +7516,7 @@
 </div>
 
 <!-- 1. Camiseta de Entrenamiento FC Bayern de Múnich Blanca y Azul Marino con Escudo Dorado -->
-<div class="product-card" data-category="Bundesliga" data-title="Camiseta Training FC Bayern Munich Blanca Azul Marino Dorada">
+<div class="product-card" data-category="Bundesliga" data-team="bayern" data-title="Camiseta Training FC Bayern Munich Blanca Azul Marino Dorada">
   <span class="badge" data-en="Training Pro">Training Pro</span>
   <img src="8a6e9d5163f3431cc9d5bb7e.jpg" alt="Camiseta Training Bayern Blanca y Marino">
   <div class="card-info">
@@ -7355,7 +7529,7 @@
 </div>
 
 <!-- 2. Camiseta de Entrenamiento FC Bayern de Múnich Azul Grisáceo y Marino con Detalles Rojos -->
-<div class="product-card" data-category="Bundesliga" data-title="Camiseta Training FC Bayern Munich Azul Grisaceo Marino Roja">
+<div class="product-card" data-category="Bundesliga" data-team="bayern" data-title="Camiseta Training FC Bayern Munich Azul Grisaceo Marino Roja">
   <span class="badge" data-en="Training Pro">Training Pro</span>
   <img src="38b46e36dafbeeca8e9cec75.jpg" alt="Camiseta Training Bayern Azul Grisáceo">
   <div class="card-info">
@@ -7368,7 +7542,7 @@
 </div>
 
 <!-- 3. Top Training FC Bayern de Múnich Blanco con Media Cremallera, Azul Marino y Escudo Dorado Formotion -->
-<div class="product-card" data-category="chandal" data-title="Top Training FC Bayern Munich Blanco Media Cremallera Dorada Formotion">
+<div class="product-card" data-category="chandal" data-team="bayern" data-title="Top Training FC Bayern Munich Blanco Media Cremallera Dorada Formotion">
   <span class="badge" data-en="Training Pro">Training Pro</span>
   <img src="c0157218d256f165a24af814.jpg" alt="Top Training Bayern Blanco Media Cremallera">
   <div class="card-info">
@@ -7381,7 +7555,7 @@
 </div>
 
 <!-- 4. Camiseta Oficial FC Bayern de Múnich Local (Home) Roja con Franjas Sutiles y Detalles Dorados (Doble Vista) -->
-<div class="product-card" data-category="Bundesliga" data-title="Camiseta FC Bayern Munich Local Roja Franjas Sutiles Doradas Maniqui">
+<div class="product-card" data-category="Bundesliga" data-team="bayern" data-title="Camiseta FC Bayern Munich Local Roja Franjas Sutiles Doradas Maniqui">
   <span class="badge" data-en="1st Kit">1ª Equipación</span>
   <img src="Gemini_Generated_Image_mc9qrhmc9qrhmc9q.jpg" alt="Camiseta Bayern Local Roja Franjas Frontal y Espalda">
   <div class="card-info">
@@ -7394,7 +7568,7 @@
 </div>
 
 <!-- 5. Camiseta Oficial FC Bayern de Múnich Local (Home) de Manga Larga Roja y Dorada (Doble Vista) -->
-<div class="product-card" data-category="Bundesliga" data-title="Camiseta Manga Larga FC Bayern Munich Local Roja Dorada Maniqui">
+<div class="product-card" data-category="Bundesliga" data-team="bayern" data-title="Camiseta Manga Larga FC Bayern Munich Local Roja Dorada Maniqui">
   <span class="badge" data-en="Manga Larga">Manga Larga</span>
   <img src="Gemini_Generated_Image_ovsjktovsjktovsj.jpg" alt="Camiseta Bayern Local Manga Larga Frontal y Espalda">
   <div class="card-info">
@@ -7407,7 +7581,7 @@
 </div>
 
 <!-- 6. Camiseta FC Bayern de Múnich Especial Morada con Patrón Estampado y Logo Rojo -->
-<div class="product-card" data-category="Bundesliga" data-title="Camiseta FC Bayern Munich Especial Morada Estampado Rojo">
+<div class="product-card" data-category="Bundesliga" data-team="bayern" data-title="Camiseta FC Bayern Munich Especial Morada Estampado Rojo">
   <span class="badge" data-en="Special Edition">Edición Especial</span>
   <img src="8c6d69e3ed8dfd2b721df555.jpg" alt="Camiseta Bayern Especial Morada y Roja">
   <div class="card-info">
@@ -7420,7 +7594,7 @@
 </div>
 
 <!-- 7. Camiseta FC Bayern de Múnich Estilo Retro Blanca con Cuello Azul Marino y Trébol Originals -->
-<div class="product-card" data-category="Bundesliga" data-title="Camiseta FC Bayern Munich Retro Blanca Cuello Azul Marino Originals">
+<div class="product-card" data-category="Bundesliga" data-team="bayern" data-title="Camiseta FC Bayern Munich Retro Blanca Cuello Azul Marino Originals">
   <span class="badge" data-en="Retro Originals">Retro Originals</span>
   <img src="ffa5ea43b0dac7f2a7863f17.jpg" alt="Camiseta Bayern Retro Blanca y Marino">
   <div class="card-info">
@@ -7433,7 +7607,7 @@
 </div>
 
 <!-- 1. Camiseta Borussia Dortmund Edición Especial Gris, Negra y Verde Neón con Patrocinador Vodafone -->
-<div class="product-card" data-category="Bundesliga" data-title="Camiseta Borussia Dortmund Edicion Especial Gris Verde Neon Vodafone">
+<div class="product-card" data-category="Bundesliga" data-team="dortmund" data-title="Camiseta Borussia Dortmund Edicion Especial Gris Verde Neon Vodafone">
   <span class="badge" data-en="Special Edition">Edición Especial</span>
   <img src="cd30c6a4ae9400da74370438.jpg" alt="Camiseta Dortmund Gris y Neón Vodafone">
   <div class="card-info">
@@ -7446,7 +7620,7 @@
 </div>
 
 <!-- 2. Conjunto de Portero Borussia Dortmund Rosa y Púrpura con Patrón de Panal y Vodafone -->
-<div class="product-card" data-category="Bundesliga" data-title="Conjunto Portero Borussia Dortmund Rosa Purpura Panal Vodafone">
+<div class="product-card" data-category="Bundesliga" data-team="dortmund" data-title="Conjunto Portero Borussia Dortmund Rosa Purpura Panal Vodafone">
   <span class="badge" data-en="GK Kit">Equipación de Portero</span>
   <img src="1a394fc66b1bb5e77a4ab8c5.jpg" alt="Conjunto Portero Dortmund Rosa y Púrpura">
   <div class="card-info">
@@ -7459,7 +7633,7 @@
 </div>
 
 <!-- 3. Pantalón Corto de Entrenamiento Borussia Dortmund Negro y Amarillo Puma -->
-<div class="product-card" data-category="Bundesliga" data-title="Pantalon Corto Training Borussia Dortmund Negro Amarillo Puma">
+<div class="product-card" data-category="Bundesliga" data-team="dortmund" data-title="Pantalon Corto Training Borussia Dortmund Negro Amarillo Puma">
   <span class="badge" data-en="Training Pro">Training Pro</span>
   <img src="be677174ca866d6650aa82e1.jpg" alt="Pantalón Corto Dortmund Negro y Amarillo">
   <div class="card-info">
@@ -7472,7 +7646,7 @@
 </div>
 
 <!-- 4. Camiseta Borussia Dortmund de Manga Larga Amarilla y Negra con Patrocinador Vodafone (Doble Vista) -->
-<div class="product-card" data-category="Bundesliga" data-title="Camiseta Manga Larga Borussia Dortmund Amarilla Negra Vodafone Maniqui">
+<div class="product-card" data-category="Bundesliga" data-team="dortmund" data-title="Camiseta Manga Larga Borussia Dortmund Amarilla Negra Vodafone Maniqui">
   <span class="badge" data-en="Manga Larga">Manga Larga</span>
   <img src="Gemini_Generated_Image_jixutzjixutzjixu.jpg" alt="Camiseta Dortmund Amarilla Manga Larga Frontal y Espalda">
   <div class="card-info">
@@ -7485,7 +7659,7 @@
 </div>
 
 <!-- 5. Camiseta Borussia Dortmund Negra con Gráfico Dinámico y Patrocinador Vodafone (Doble Vista) -->
-<div class="product-card" data-category="Bundesliga" data-title="Camiseta Borussia Dortmund Negra Grafico Dinamico Vodafone Maniqui">
+<div class="product-card" data-category="Bundesliga" data-team="dortmund" data-title="Camiseta Borussia Dortmund Negra Grafico Dinamico Vodafone Maniqui">
   <span class="badge" data-en="Special Edition">Edición Especial</span>
   <img src="Gemini_Generated_Image_iey58ziey58ziey5.jpg" alt="Camiseta Dortmund Negra Gráfico Dinámico Frontal y Espalda">
   <div class="card-info">
@@ -7498,7 +7672,7 @@
 </div>
 
 <!-- 6. Camiseta Borussia Dortmund Púrpura con Rayas Verticales y Detalles en Verde Neón (Doble Vista) -->
-<div class="product-card" data-category="Bundesliga" data-title="Camiseta Borussia Dortmund Purpura Rayas Verticales Verde Neon Maniqui">
+<div class="product-card" data-category="Bundesliga" data-team="dortmund" data-title="Camiseta Borussia Dortmund Purpura Rayas Verticales Verde Neon Maniqui">
   <span class="badge" data-en="Special Edition">Edición Especial</span>
   <img src="Gemini_Generated_Image_a130iea130iea130.jpg" alt="Camiseta Dortmund Púrpura y Verde Neón Frontal y Espalda">
   <div class="card-info">
@@ -7511,7 +7685,7 @@
 </div>
 
         <!-- Inter Miami Entrenamiento -->
-        <div class="product-card" data-category="MLS" data-title="Inter Miami CF MLS Conjunto Entrenamiento Negro Ergo Next">
+        <div class="product-card" data-category="MLS" data-team="inter miami" data-title="Inter Miami CF MLS Conjunto Entrenamiento Negro Ergo Next">
           <span class="badge">Training</span>
           <img src="inter miami entreno.jpeg" alt="Inter Miami Entrenamiento">
           <div class="card-info">
@@ -7523,8 +7697,6 @@
           </div>
         </div>
       </div>
-
-    
 
       <!-- Contenedor para la Paginación Inteligente -->
       <div id="paginationContainer" class="pagination-container"></div>
@@ -7551,12 +7723,14 @@
     const waOrderBtn = document.getElementById('waOrderBtn');
     const searchInput = document.getElementById('searchInput');
     const filterBtns = document.querySelectorAll('.filter-btn');
+    const subBtns = document.querySelectorAll('.filter-sub');
     const allCards = Array.from(document.querySelectorAll('.product-card'));
     const paginationContainer = document.getElementById('paginationContainer');
 
     let currentPage = 1;
     const itemsPerPage = 20; 
     let currentCategory = 'all';
+    let currentTeam = 'all';
     let currentSearchTerm = '';
     let currentLang = 'es';
 
@@ -7564,12 +7738,10 @@
     function setLanguage(lang) {
       currentLang = lang;
       
-      // Actualizar botones activos
       document.querySelectorAll('.lang-btn').forEach(btn => {
         btn.classList.toggle('active', btn.innerText.toLowerCase() === lang);
       });
 
-      // Traducir elementos estáticos que tengan el atributo data-en
       document.querySelectorAll('[data-en]').forEach(el => {
         if (lang === 'en') {
           if (!el.hasAttribute('data-es')) {
@@ -7589,23 +7761,6 @@
             } else {
               el.innerText = textEs;
             }
-          }
-        }
-      });
-
-      // Traducir dinámicamente los títulos de las tarjetas si tienen su versión en inglés
-      allCards.forEach(card => {
-        const titleEl = card.querySelector('.card-title');
-        const badgeEl = card.querySelector('.badge');
-        
-        if (lang === 'en') {
-          if (card.dataset.titleEn && !titleEl.hasAttribute('data-es')) {
-            titleEl.setAttribute('data-es', titleEl.innerText);
-            titleEl.innerText = card.dataset.titleEn;
-          }
-        } else {
-          if (titleEl.hasAttribute('data-es')) {
-            titleEl.innerText = titleEl.getAttribute('data-es');
           }
         }
       });
@@ -7645,9 +7800,10 @@
     function updateDisplay() {
       const filteredCards = allCards.filter(card => {
         const matchesCategory = (currentCategory === 'all' || card.getAttribute('data-category') === currentCategory);
+        const matchesTeam = (currentTeam === 'all' || card.getAttribute('data-team') === currentTeam);
         const titleData = card.getAttribute('data-title').toLowerCase();
         const matchesSearch = titleData.includes(currentSearchTerm);
-        return matchesCategory && matchesSearch;
+        return matchesCategory && matchesTeam && matchesSearch;
       });
 
       const totalPages = Math.ceil(filteredCards.length / itemsPerPage) || 1;
@@ -7723,13 +7879,44 @@
       paginationContainer.appendChild(nextBtn);
     }
 
+    // Manejo de despliegue y filtros de Ligas principales con animación y ocultamiento
     filterBtns.forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
-        filterBtns.forEach(b => b.classList.remove('active'));
+        
+        const container = btn.closest('.dropdown-container');
+        
+        if (container) {
+          const isOpen = container.classList.contains('open');
+          // Cierra todos los demás menús desplegables
+          document.querySelectorAll('.dropdown-container').forEach(c => c.classList.remove('open'));
+          
+          if (!isOpen) {
+            container.classList.add('open');
+          }
+        } else {
+          // Si es un botón sin submenú (ej. Sudamérica, MLS, etc.), cierra todos los desplegables abiertos
+          document.querySelectorAll('.dropdown-container').forEach(c => c.classList.remove('open'));
+        }
+
+        document.querySelectorAll('.filter-btn, .sub-item').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
 
         currentCategory = btn.getAttribute('data-category');
+        currentTeam = 'all';
+        currentPage = 1;
+        updateDisplay();
+      });
+    });
+
+    // Manejo de clics en las subcategorías (equipos específicos)
+    subBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        subBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        currentTeam = btn.getAttribute('data-team');
         currentPage = 1;
         updateDisplay();
       });
@@ -7746,3 +7933,4 @@
 
 </body>
 </html>
+```[cite: 7]
